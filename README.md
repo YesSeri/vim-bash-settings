@@ -9,3 +9,14 @@ To get it running use this command.
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ln -f .vimrc ~/.vimrc && vim +PluginInstall +qall
 ```
+# .bashrc_aliases file
+
+This is an extra file, which I will put in ~ folder and Source from /.bashrc
+
+Add this to ~/.bashrc
+
+```bash
+grep -qF '[ -f $HOME/.bashrc_aliases ] && . $HOME/.bashrc_aliases' ~/.bashrc || echo '[ -f $HOME/.bashrc_aliases ] && . $HOME/.bashrc_aliases' >> ~/.bashrc
+ln -f .bashrc_aliases ~/.bashrc_aliases
+```
+

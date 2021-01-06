@@ -1,0 +1,3 @@
+# Good commands
+alias lah='ls -lah'
+alias gitlogall='git log --graph --full-history --all --color --oneline'

@@ -61,3 +61,5 @@ nmap <C-n> :NERDTreeToggle<CR>
 :set shiftwidth=2
 :set expandtab
 :set smartindent
+:set lazyredraw
+

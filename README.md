@@ -4,17 +4,17 @@ To start clone the repo.
 git clone git@github.com:YesSeri/vim-git.git ~/.vim
 ```
 ## .vimrc file
-.vimrc is here for easy access between different computers. I need to install vundle manually when at a new computer. 
+`.vimrc` is here for easy access between different computers. I need to install vundle manually when at a new computer. 
 
-I create a hard symlink between the repo and the place where it is read. The .vimrc file needs to be in ~/.vimrc for vim to register it. -s means soft symlink and -f means it overwrites in case there is already a file there. 
+I create a hard symlink between the repo and the place where it is read. The .vimrc file needs to be in `~/.vimrc` for vim to register it. -s means soft symlink and -f means it overwrites in case there is already a file there. 
 
 ## .bashrc_aliases file
 
-This is an extra file, which I will put in ~ folder and Source from /.bashrc
+This is an extra file, which I will put in ~ folder and Source from `~/.bashrc`
 
 ## Install
 
-To get it running execute `setup.sh` or use this command. 
+To get it running execute `setup.sh` or use this command. For detailed info, read the comments in the `setup.sh` file.
 
 ```bash
 ln -f .bashrc_aliases ~/.bashrc_aliases                                                                                                                                                                                                                      

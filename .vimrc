@@ -48,6 +48,7 @@ let g:syntastic_check_on_wq = 0
 " Color Scheme
 :colorscheme jellybeans
 
+" My settings
 if has('persistent_undo')
   if !isdirectory("/tmp/.vim-undo-dir")
     call mkdir("/tmp/.vim-undo-dir", "", 0700)
@@ -62,4 +63,7 @@ nmap <C-n> :NERDTreeToggle<CR>
 :set expandtab
 :set smartindent
 :set lazyredraw
+
+" Makes end curly brace if enter is quickly pressed
+inoremap {<CR>  {<CR>}<Esc>O
 

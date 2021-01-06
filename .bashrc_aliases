@@ -1,6 +1,6 @@
 # Good commands
 alias redo='sudo !!'
-alias mkcd='mkdir -p $1; cd $1'
+mkcd() { mkdir -p "$1" && cd "$1"; } 
 alias proj='~/projects'
 
 # Comp info
@@ -29,3 +29,7 @@ function gitaddcommitpush() {
     git commit -a -m "$1"
     git push
 }
+
+#Settings
+export VISUAL=vim;
+export EDITOR=vim;

@@ -1,0 +1,27 @@
+# Good commands
+alias redo='sudo !!'
+alias mkcd='mkdir -p $1; cd $1'
+alias proj='~/projects'
+
+# Comp info
+alias atop='watch -n 3 "free; echo; uptime; echo; ps aux  --sort=-%cpu | head -n 11; echo; who"'
+alias temp="sensors | grep 'CPU Temp'"
+
+# Apt
+alias inll='sudo apt install'
+alias upclean='sudo apt-get update -qq && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get autoremove -y && sudo apt-get autoclean'
+
+# Programming
+alias killnode='killall node'
+
+# Git
+alias lah='ls -hals'
+alias glogall='git log --graph --full-history --all --color --oneline'
+alias gs='git status'
+alias gp='git pull'
+alias gacp='gitaddcommitpush'
+function gitaddcommitpush() {
+    git add .
+    git commit -a -m "$1"
+    git push
+}

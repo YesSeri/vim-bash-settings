@@ -5,11 +5,23 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+" Git plugin
 Plugin 'tpope/vim-fugitive'
+" use cs ys or ds to do surround commands
 Plugin 'tpope/vim-surround'
+" Some standard stuff
 Plugin 'tpope/vim-sensible'
+" Directory Tree
 Plugin 'preservim/nerdtree'
+" Color scheme
+Plugin 'nanotech/jellybeans.vim'
+" Auto completes code
+Plugin 'valloric/youcompleteme'
+" JS color
 Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
+" Error message
+Plugin 'scrooloose/syntastic'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -22,6 +34,19 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Color Scheme
+:colorscheme jellybeans
 
 nmap <C-n> :NERDTreeToggle<CR>
 :set tabstop=2

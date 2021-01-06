@@ -48,6 +48,14 @@ let g:syntastic_check_on_wq = 0
 " Color Scheme
 :colorscheme jellybeans
 
+if has('persistent_undo')
+  if !isdirectory("/tmp/.vim-undo-dir")
+    call mkdir("/tmp/.vim-undo-dir", "", 0700)
+  endif
+  set undodir=/tmp/.vim-undo-dir
+  set undofile
+endif
+
 nmap <C-n> :NERDTreeToggle<CR>
 :set tabstop=2
 :set shiftwidth=2

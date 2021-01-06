@@ -6,6 +6,10 @@ alias proj='~/projects'
 # Comp info
 alias atop='watch -n 3 "free; echo; uptime; echo; ps aux  --sort=-%cpu | head -n 11; echo; who"'
 alias temp="sensors | grep 'CPU Temp'"
+myuptime () {
+  uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
+  return;
+}
 
 # Apt
 alias inll='sudo apt install'

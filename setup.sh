@@ -16,3 +16,5 @@ git clone --quiet https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vund
 
 # Makes symlink to the .vimrc from the folder of the script and installs plugins
 ln -f .vimrc ~/.vimrc && vim +PluginInstall +qall
+
+echo "Install complete"

@@ -11,9 +11,11 @@ This is an extra file, which I will put in ~ folder and Source from `~/.bashrc`
 
 ## Install
 
-To start clone the repo.
+One way of installing is to install the repo and just run `setup.sh`
 ```
 git clone git@github.com:YesSeri/vim-git.git ~/.vim
+cd ~/.vim/vim-git
+./setup.sh
 ```
 
 To get it running execute `setup.sh` or use this command. For detailed info, read the comments in the `setup.sh` file.

@@ -15,7 +15,7 @@ Plugin 'tpope/vim-sensible'
 Plugin 'arzg/vim-colors-xcode'
 Plugin 'preservim/nerdtree'
 " Color scheme
-Plugin 'nanotech/jellybeans.vim'
+" Plugin 'nanotech/jellybeans.vim'
 " Auto completes code
 Plugin 'valloric/youcompleteme'
 " JS color

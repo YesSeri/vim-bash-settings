@@ -22,6 +22,8 @@ alias killnode='killall node'
 alias lah='ls -hals'
 alias glogall='git log --graph --full-history --all --color --oneline'
 alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
 alias gp='git pull'
 alias gacp='gitaddcommitpush'
 function gitaddcommitpush() {

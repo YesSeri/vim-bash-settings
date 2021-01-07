@@ -47,7 +47,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Color Scheme
-:colorscheme jellybeans
+:colorscheme xcodedarkhc
+
 
 " My settings
 if has('persistent_undo')

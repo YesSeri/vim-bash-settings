@@ -12,9 +12,9 @@ Plugin 'tpope/vim-surround'
 " Some standard stuff
 Plugin 'tpope/vim-sensible'
 " Directory Tree
-Plugin 'arzg/vim-colors-xcode'
 Plugin 'preservim/nerdtree'
 " Color scheme
+Plugin 'arzg/vim-colors-xcode'
 " Plugin 'nanotech/jellybeans.vim'
 " Auto completes code
 Plugin 'valloric/youcompleteme'
@@ -81,4 +81,3 @@ nmap <C-n> :NERDTreeToggle<CR>
 
 " Makes end curly brace if enter is quickly pressed
 inoremap {<CR>  {<CR>}<Esc>O
-

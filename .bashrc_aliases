@@ -2,6 +2,16 @@
 alias redo='sudo !!'
 mkcd() { mkdir -p "$1" && cd "$1"; } 
 alias proj='~/projects'
+..() {
+  N=$(($1))
+  if [ $N -lt 1 ]; then
+ N=1
+  fi
+  while ((N)); do
+ cd ..
+ let N-=1
+  done;
+}
 
 # Comp info
 alias atop='watch -n 3 "free; echo; uptime; echo; ps aux  --sort=-%cpu | head -n 11; echo; who"'

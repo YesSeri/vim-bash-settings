@@ -23,6 +23,9 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 " Error message
 Plugin 'scrooloose/syntastic'
+" Auto resizing of window
+Plugin 'camspiers/animate.vim'
+Plugin 'camspiers/lens.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required

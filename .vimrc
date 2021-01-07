@@ -59,6 +59,16 @@ if has('persistent_undo')
   set undofile
 endif
 
+function ToggleColors()
+    if (g:colors_name == "xcodedarkhc")
+        colorscheme xcodelighthc
+    else
+        colorscheme xcodedarkhc
+    endif
+endfunction
+
+nnoremap <C-b> :call ToggleColors()<CR>
+
 nmap <C-n> :NERDTreeToggle<CR>
 :set tabstop=2
 :set shiftwidth=2

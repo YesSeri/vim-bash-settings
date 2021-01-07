@@ -12,6 +12,7 @@ Plugin 'tpope/vim-surround'
 " Some standard stuff
 Plugin 'tpope/vim-sensible'
 " Directory Tree
+Plugin 'arzg/vim-colors-xcode'
 Plugin 'preservim/nerdtree'
 " Color scheme
 Plugin 'nanotech/jellybeans.vim'

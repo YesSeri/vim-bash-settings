@@ -13,8 +13,8 @@ This is an extra file, which I will put in ~ folder and Source from `~/.bashrc`
 
 One way of installing is to install the repo and just run `setup.sh`
 ```
-git clone git@github.com:YesSeri/vim-bash-settings.git ~/.vim
-cd ~/.vim/vim-git
+git clone git@github.com:YesSeri/vim-bash-settings.git ~/.vim/vim-bash-settings
+cd ~/.vim/vim-bash-settings
 ./setup.sh
 ```
 

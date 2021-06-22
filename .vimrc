@@ -17,12 +17,12 @@ Plugin 'preservim/nerdtree'
 Plugin 'arzg/vim-colors-xcode'
 " Plugin 'nanotech/jellybeans.vim'
 " Auto completes code
-Plugin 'valloric/youcompleteme'
+"Plugin 'valloric/youcompleteme'
 " JS color
 Plugin 'pangloss/vim-javascript'
 Plugin 'leafgarland/typescript-vim'
 " Error message
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
 " Auto resizing of window
 Plugin 'camspiers/animate.vim'
 Plugin 'camspiers/lens.vim'
@@ -40,14 +40,14 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 
 " syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
 
 " Color Scheme
 :colorscheme xcodedarkhc
@@ -73,8 +73,8 @@ endfunction
 nnoremap <C-b> :call ToggleColors()<CR>
 
 nmap <C-n> :NERDTreeToggle<CR>
-:set tabstop=2
-:set shiftwidth=2
+:set tabstop=4
+:set shiftwidth=4
 :set expandtab
 :set smartindent
 :set lazyredraw

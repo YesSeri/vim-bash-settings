@@ -45,6 +45,13 @@ alias gc='git commit'
 alias gpush='git push'
 alias gpull='git pull'
 alias gacp='gitaddcommitpush'
+alias sshod='sshcd public_html/operadocs.com'
+
+# sshcd into a folder
+sshcd(){
+   ssh -t singcade@172.96.187.221 "cd $1; exec \$SHELL --login"
+}
+
 function gitaddcommitpush() {
     git add .
     git commit -a -m "$1"

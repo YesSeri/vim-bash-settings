@@ -46,7 +46,7 @@ alias gpush='git push'
 alias gpull='git pull'
 alias gacp='gitaddcommitpush'
 alias sshod='sshcd public_html/operadocs.com'
-
+alias hifz='eval "$(history_to_fzf)"'
 # sshcd into a folder
 sshcd(){
    ssh -t singcade@172.96.187.221 "cd $1; exec \$SHELL --login"
@@ -56,6 +56,11 @@ function gitaddcommitpush() {
     git add .
     git commit -a -m "$1"
     git push
+}
+
+# cut removes line number, first awk statement trims whitespace, second one gets all unique lines, preserving order, and the into fzf.
+function history_to_fzf() {
+    history | cut -c 8- | awk '{$1=$1;print}' | awk '{ if (! seen[$0]++) print }' | fzf
 }
 
 #Settings

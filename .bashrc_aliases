@@ -60,7 +60,13 @@ function gitaddcommitpush() {
 
 # cut removes line number, first awk statement trims whitespace, second one gets all unique lines, preserving order, and the into fzf.
 function history_to_fzf() {
-    history | cut -c 8- | awk '{$1=$1;print}' | awk '{ if (! seen[$0]++) print }' | fzf
+  if ! command -v fzf &> /dev/null
+  then
+      echo "fzf could not be found"
+      exit
+  fi
+
+  history | cut -c 8- | awk '{$1=$1;print}' | awk '{ if (! seen[$0]++) print }' | fzf
 }
 
 #Settings

@@ -37,7 +37,6 @@ alias upclean='sudo apt-get update -qq && sudo apt-get upgrade -y && sudo apt-ge
 alias killnode='killall node'
 
 # Git
-alias lah='ls -hals'
 alias glogall='git log --graph --full-history --all --color --oneline'
 alias gs='git status'
 alias ga='git add'
@@ -47,6 +46,7 @@ alias gpull='git pull'
 alias gacp='gitaddcommitpush'
 alias sshod='sshcd public_html/operadocs.com'
 alias hifz='eval "$(history_to_fzf)"'
+alias lah='printFilesPretty'
 # sshcd into a folder
 sshcd(){
    ssh -t singcade@172.96.187.221 "cd $1; exec \$SHELL --login"
@@ -65,8 +65,11 @@ function history_to_fzf() {
       echo "fzf could not be found"
       exit
   fi
-
   history | cut -c 8- | awk '{$1=$1;print}' | awk '{ if (! seen[$0]++) print }' | fzf
+}
+
+function printFilesPretty(){
+	ls --color=always -lah | awk 'BEGIN {print "name", "\t", "size", "\t", "time"} {if (NR > 3) print $NF, "\t", $5, $6"-"$7" "$8}' | column -t
 }
 
 #Settings

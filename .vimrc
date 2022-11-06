@@ -89,9 +89,9 @@ function ToggleColors()
 		set background=dark
     endif
 endfunction
-
 " Makes end curly brace if enter is quickly pressed
-" inoremap {<CR>  {<CR>}<Esc>O
+inoremap { {
+}<C-o>dd<C-o>k<C-o>]p<C-o>O
 
 map <F1> :call DecreaseWindowSize()<CR>
 map <F2> :call IncreaseWindowSize()<CR>
@@ -102,11 +102,11 @@ map <F10> :source $MYVIMRC<CR>
 nmap <C-n> :NERDTreeToggle<CR>
 
 " SETTINGS
+" Insert braces automatically
 highlight CursorLine cterm=NONE
 " Stops buffers from needing to be saved everytime you switch.
 set hidden
 set visualbell
-set laststatus=2
 set cursorline
 set t_vb=
 set number
@@ -141,6 +141,8 @@ function DecreaseWindowSize()
 	endif
 endfunction
 function! RunFile()
+	" Need to have grip installed. pip install grip.
+	" Opens a markdown file in firefox.
 	if (&ft=='md')
 		let l:md_filepath = expand('%:p')
 		":h		head (last path component removed)
@@ -149,15 +151,16 @@ function! RunFile()
 		execute '!grip ' . l:md_filepath . ' --export ' . l:html_filepath
 		execute '!Start-Sleep 0.5 | start firefox ' . l:html_filepath
 		execute '!rm ' . l:html_filepath
+	" Exceute cargo run in directory where vim was opened.
 	elseif (&ft=='rust')
 		execute '!clear | cargo run'
+	" Run current file in awk.
 	elseif (&ft=='awk')
 		"echo '!awk -f ' . @%
+		write
 		execute '!awk -f ' . @%
 	else
 		echo 'Not a valid file to run'
 	endif
 
 endfunction
-
-

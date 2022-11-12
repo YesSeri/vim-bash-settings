@@ -10,9 +10,11 @@ install cargo-binstall for quicker installation. `cargo binstall cargo-binstall`
 |<https://github.com/theryangeary/choose>| `cargo binstall choose`|
 |<https://github.com/junegunn/fzf>| `choco binstall fzf`|
 |<https://github.com/sharkdp/bat>| `cargo binstall bat`|
-|<https://github.com/ducaale/xh>| `cargo binstall choose`|
+|<>| `cargo binstall choose`|
 |<https://github.com/httpie/httpie>| `python -m pip install --upgrade pip wheel ; python -m pip install httpie`|
 |<https://github.com/ducaale/xh>| `cargo binstall xh`|
+|<>| `cargo binstall lsd`|
+|<https://starship.rs/guide/#%F0%9F%9A%80-installation>| `cargo binstall starship ; "Invoke-Expression (&starship init powershell)" >> $PROFILE`|
 
 
 ## fzf
@@ -28,3 +30,6 @@ open multiple files interactively.
 xh is httpie clone in rust
 `http https://dummyjson.com/products/add cost=10` - post request
 `http https://dummyjson.com/users` - get request
+
+## Favourites
+zoxide, lsd, xh, fzf

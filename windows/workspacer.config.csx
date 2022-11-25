@@ -37,17 +37,17 @@ Action<IConfigContext> doConfig = (context) =>
 		},
 		RightWidgets = () => new IBarWidget[]
 		{
+			new TitleWidget(),
 			new BatteryWidget(),
 			new TimeWidget(1000, "HH:mm dd"),
 			new ActiveLayoutWidget(),
-	  }
+		},
+        FontSize = 12,
+		BarHeight = 24,
 	};
 	context.AddBar(barPluginConfig);
-	// Uncomment to switch update branch (or to disable updates)
-    //context.Branch = Branch.None;
 
 
-    // context.AddBar();
 	var focusIndicatorPluginConfig = new FocusIndicatorPluginConfig();
 	focusIndicatorPluginConfig.TimeToShow = 1000;
 	focusIndicatorPluginConfig.BorderColor = new Color(0x70, 0xd0, 0x00);
@@ -68,36 +68,44 @@ Action<IConfigContext> doConfig = (context) =>
 	{
 	// Writer is used to find program names.
 		// using (StreamWriter sw = File.AppendText(path))
+		string[] webWorkspacePrograms = {"Mozilla Firefox", "Google Chrome", "Microsoft Edge"};
+		string[] mainWorkspacePrograms = {"Maple", "Visual Studio Code", "IntelliJ"};
+		string[] docsWorkspacePrograms = {"SumatraPDF"};
+		string[] terminalWorkspacePrograms = {"Windows Terminal", "cmd", "PowerShell"};
+		string[] communicationsWorkspacePrograms = {"Discord", "WhatsApp"};
 		{
 			// sw.WriteLine(window.Title);
-			if (window.Title.Contains("Mozilla Firefox") || window.Title.Contains("Chrome"))
+			if (webWorkspacePrograms.Any(window.Title.Contains))
 			{
 				return context.WorkspaceContainer["w"];
 			}
-			if (window.Title.Contains("Discord") || window.Title.Contains("WhatsApp"))
+			else if (mainWorkspacePrograms.Any(window.Title.Contains))
 			{
-				return context.WorkspaceContainer["c"];
+				return context.WorkspaceContainer["m"];
 			}
-			if (window.Title.Contains("Windows Terminal") || window.Title.Contains("cmd") || window.Title.Contains("PowerShell"))
+			else if (docsWorkspacePrograms.Any(window.Title.Contains))
+			{
+				return context.WorkspaceContainer["d"];
+			}
+			else if (terminalWorkspacePrograms.Any(window.Title.Contains))
 			{
 				return context.WorkspaceContainer["t"];
 			}
-			if (window.Title.Contains("Maple") || window.Title.Contains("Visual Studio Code"))
+			else if (communicationsWorkspacePrograms.Any(window.Title.Contains))
 			{
-				return context.WorkspaceContainer["m"];
+				return context.WorkspaceContainer["c"];
 			}
 			return null;
 		}
 	});
 
 	
-	string browserCmd;
-    browserCmd = "/C start firefox";
  
 	KeyModifiers mod = KeyModifiers.Alt;
 	 // Alt + B = Chrome
     // context.Keybinds.Subscribe(mod, workspacer.Keys.B, () => System.Diagnostics.Process.Start("CMD.exe", browserCmd), "open firefox");
-
+	context.Keybinds.Unsubscribe(mod, Keys.Enter);
+	
  
 
 };

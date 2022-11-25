@@ -22,41 +22,41 @@ alias .7='.. 7'
 alias .8='.. 8'
 
 # Comp info
-alias atop='watch -n 3 "free; echo; uptime; echo; ps aux  --sort=-%cpu | head -n 11; echo; who"'
-alias temp="sensors | grep 'CPU Temp'"
+# alias atop='watch -n 3 "free; echo; uptime; echo; ps aux  --sort=-%cpu | head -n 11; echo; who"'
+# alias temp="sensors | grep 'CPU Temp'"
 myuptime () {
   uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
   return;
 }
 
 # Apt
-alias inll='sudo apt install'
-alias upclean='sudo apt-get update -qq && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get autoremove -y && sudo apt-get autoclean'
+# alias inll='sudo apt install'
+# alias upclean='sudo apt-get update -qq && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get autoremove -y && sudo apt-get autoclean'
 
 # Programming
-alias killnode='killall node'
+# alias killnode='killall node'
 
 # Git
-alias glogall='git log --graph --full-history --all --color --oneline'
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gpush='git push'
-alias gpull='git pull'
-alias gacp='gitaddcommitpush'
-alias sshod='sshcd public_html/operadocs.com'
-alias hifz='eval "$(history_to_fzf)"'
-alias lah='printFilesPretty'
+# alias glogall='git log --graph --full-history --all --color --oneline'
+# alias gs='git status'
+# alias ga='git add'
+# alias gc='git commit'
+# alias gpush='git push'
+# alias gpull='git pull'
+# alias gacp='gitaddcommitpush'
+# alias sshod='sshcd public_html/operadocs.com'
+# alias hifz='eval "$(history_to_fzf)"'
+# alias lah='printFilesPretty'
 # sshcd into a folder
 sshcd(){
    ssh -t singcade@172.96.187.221 "cd $1; exec \$SHELL --login"
 }
 
-function gitaddcommitpush() {
-    git add .
-    git commit -a -m "$1"
-    git push
-}
+# function gitaddcommitpush() {
+#     git add .
+#     git commit -a -m "$1"
+#     git push
+# }
 
 # cut removes line number, first awk statement trims whitespace, second one gets all unique lines, preserving order, and the into fzf.
 function history_to_fzf() {
@@ -68,10 +68,10 @@ function history_to_fzf() {
   history | cut -c 8- | awk '{$1=$1;print}' | awk '{ if (! seen[$0]++) print }' | fzf
 }
 
-function printFilesPretty(){
-	ls --color=always -lah | awk 'BEGIN {print "name", "\t", "size", "\t", "time"} {if (NR > 3) print $NF, "\t", $5, $6"-"$7" "$8}' | column -t
-}
+# function printFilesPretty(){
+# 	ls --color=always -lah | awk 'BEGIN {print "name", "\t", "size", "\t", "time"} {if (NR > 3) print $NF, "\t", $5, $6"-"$7" "$8}' | column -t
+# }
 
 #Settings
-export VISUAL=vim;
-export EDITOR=vim;
+export VISUAL=nvim;
+export EDITOR=nvim;

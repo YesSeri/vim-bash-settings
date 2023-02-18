@@ -1,0 +1,11 @@
+sudo snap install audacity bitwarden code datagrip discord emacs fbreader firefox intellij-idea-ultimate krita musescore okular postman vlc
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+cargo install cargo-binstall
+cargo binstall bat
+cargo binstall fzf
+cargo binstall fd-find
+cargo binstall lsd
+
+sudo apt install curl neovim build-essential pandoc qbittorrent wireshark ripgrep htop sox git zathura nnn brightnessctl xclip complx-tools nautilus-dropbox zathura

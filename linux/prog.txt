@@ -8,4 +8,4 @@ cargo binstall fzf
 cargo binstall fd-find
 cargo binstall lsd
 
-sudo apt install curl neovim build-essential pandoc qbittorrent wireshark ripgrep htop sox git zathura nnn brightnessctl xclip complx-tools nautilus-dropbox zathura
+sudo apt install curl neovim build-essential pandoc qbittorrent wireshark ripgrep htop sox git zathura nnn brightnessctl xclip  nautilus-dropbox zathura fzf

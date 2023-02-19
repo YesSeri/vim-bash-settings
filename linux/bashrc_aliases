@@ -1,7 +1,55 @@
-# Good commands
-alias redo='sudo !!'
-mkcd() { mkdir -p "$1" && cd "$1"; } 
-alias proj='~/projects'
+# Use this in ~/.bashrc to read file.
+# if [ -f ~/.bash_aliases ]; then
+#     . ~/.bash_aliases
+# fi
+myuptime () {
+  uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
+  return;
+}
+
+alias vim='nvim'
+
+alias tree="lsd --tree --directory-only --ignore-glob '.*'"
+alias treeHidden="lsd --tree --directory-only"
+
+alias volup="amixer sset Master 10%+"
+alias voldown="amixer sset Master 10%-"
+alias vol="amixer sset Master"
+
+alias brightup="sudo brightnessctl set +10%"
+alias brightdown="sudo brightnessctl  set 10%-"
+alias bright="sudo brightnessctl set"
+alias o="xdg-open"
+
+alias tablet="python3 /home/henrik/programming/scripts/scale.py"
+alias b-noise="/home/henrik/programming/scripts/brown_noise.sh"
+
+alias nnn="nnn -e -H"
+# -e = edit in $EDITOR
+# -H = show hidden
+alias x="exit"
+alias buildgcc="gcc -Wall -g $1 -o a.out"
+alias ec="emacsclient -n"
+alias lc3="/home/henrik/Documents/t2/machine/LC_3_Simulator/LC3Tools-2.0.2.AppImage &"
+
+createLatex() {
+	file=$1
+	filename="${file%.*}"
+	outdir="out-${filename}"
+	mkdir -p $outdir && pandoc $file --standalone --output $outdir/$filename.pdf #&& pdflatex -output-directory=$outdir $outdir/$filename.tex
+	#find $outdir | rg .*(aux|log)$ | xargs rm
+	find $outdir -type f -iname '*.pdf' | xargs xdg-open
+
+}
+
+upgradeAptApps() {
+	sudo apt update -y && sudo apt upgrade -y
+}
+
+install() {
+	sudo apt install $1
+}
+
 ..() {
   N=$(($1))
   if [ $N -lt 1 ]; then
@@ -12,6 +60,7 @@ alias proj='~/projects'
  let N-=1
   done;
 }
+
 alias .1='cd ..' # see .. function
 alias .2='.. 2'
 alias .3='.. 3'
@@ -21,57 +70,14 @@ alias .6='.. 6'
 alias .7='.. 7'
 alias .8='.. 8'
 
-# Comp info
-# alias atop='watch -n 3 "free; echo; uptime; echo; ps aux  --sort=-%cpu | head -n 11; echo; who"'
-# alias temp="sensors | grep 'CPU Temp'"
-myuptime () {
-  uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
-  return;
-}
+alias redo='sudo !!'
 
-# Apt
-# alias inll='sudo apt install'
-# alias upclean='sudo apt-get update -qq && sudo apt-get upgrade -y && sudo apt-get dist-upgrade -y && sudo apt-get autoremove -y && sudo apt-get autoclean'
+mkcd() { mkdir -p "$1" && cd "$1"; }
 
-# Programming
-# alias killnode='killall node'
-
-# Git
-# alias glogall='git log --graph --full-history --all --color --oneline'
-# alias gs='git status'
-# alias ga='git add'
-# alias gc='git commit'
-# alias gpush='git push'
-# alias gpull='git pull'
-# alias gacp='gitaddcommitpush'
-# alias sshod='sshcd public_html/operadocs.com'
-# alias hifz='eval "$(history_to_fzf)"'
-# alias lah='printFilesPretty'
-# sshcd into a folder
-sshcd(){
-   ssh -t singcade@172.96.187.221 "cd $1; exec \$SHELL --login"
-}
-
-# function gitaddcommitpush() {
-#     git add .
-#     git commit -a -m "$1"
-#     git push
-# }
-
-# cut removes line number, first awk statement trims whitespace, second one gets all unique lines, preserving order, and the into fzf.
-function history_to_fzf() {
-  if ! command -v fzf &> /dev/null
-  then
-      echo "fzf could not be found"
-      exit
-  fi
-  history | cut -c 8- | awk '{$1=$1;print}' | awk '{ if (! seen[$0]++) print }' | fzf
-}
-
-# function printFilesPretty(){
-# 	ls --color=always -lah | awk 'BEGIN {print "name", "\t", "size", "\t", "time"} {if (NR > 3) print $NF, "\t", $5, $6"-"$7" "$8}' | column -t
-# }
-
-#Settings
-export VISUAL=nvim;
-export EDITOR=nvim;
+alias glogall='git log --graph --full-history --all --color --oneline'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gpush='git push'
+alias gpull='git pull'
+alias gacp='gitaddcommitpush'

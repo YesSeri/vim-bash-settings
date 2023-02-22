@@ -9,9 +9,6 @@ myuptime () {
 
 alias vim='nvim'
 
-alias tree="lsd --tree --directory-only --ignore-glob '.*'"
-alias treeHidden="lsd --tree --directory-only"
-
 alias volup="amixer sset Master 10%+"
 alias voldown="amixer sset Master 10%-"
 alias vol="amixer sset Master"
@@ -24,13 +21,13 @@ alias o="xdg-open"
 alias tablet="python3 /home/henrik/programming/scripts/scale.py"
 alias b-noise="/home/henrik/programming/scripts/brown_noise.sh"
 
-alias nnn="nnn -e -H"
+alias nnn="nnn -e -H" 
 # -e = edit in $EDITOR
 # -H = show hidden
 alias x="exit"
 alias buildgcc="gcc -Wall -g $1 -o a.out"
 alias ec="emacsclient -n"
-alias lc3="/home/henrik/Documents/t2/machine/LC_3_Simulator/LC3Tools-2.0.2.AppImage &"
+alias lc3="/home/henrik/Documents/t2/machine/LC_3_Simulator/LC3Tools-2.0.2.AppImage"
 
 createLatex() {
 	file=$1
@@ -41,6 +38,10 @@ createLatex() {
 	find $outdir -type f -iname '*.pdf' | xargs xdg-open
 
 }
+zi(){
+	cd $(zoxide query --list $1 | fzf)
+}
+
 
 upgradeAptApps() {
 	sudo apt update -y && sudo apt upgrade -y
@@ -50,34 +51,20 @@ install() {
 	sudo apt install $1
 }
 
-..() {
-  N=$(($1))
-  if [ $N -lt 1 ]; then
- N=1
-  fi
-  while ((N)); do
- cd ..
- let N-=1
-  done;
-}
-
-alias .1='cd ..' # see .. function
-alias .2='.. 2'
-alias .3='.. 3'
-alias .4='.. 4'
-alias .5='.. 5'
-alias .6='.. 6'
-alias .7='.. 7'
-alias .8='.. 8'
-
 alias redo='sudo !!'
 
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
 alias glogall='git log --graph --full-history --all --color --oneline'
-alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gpush='git push'
 alias gpull='git pull'
-alias gacp='gitaddcommitpush'
+
+# Full info and hidden files
+alias lah='ls -lah'
+
+alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)" .'
+
+alias foxit='/home/henrik/.installedPrograms/foxitsoftware/foxitreader/FoxitReader.sh'
+

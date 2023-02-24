@@ -68,3 +68,7 @@ alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)" .'
 
 alias foxit='/home/henrik/.installedPrograms/foxitsoftware/foxitreader/FoxitReader.sh'
 
+
+filepick-extension() {
+	fd -e rs | fzf --preview='head -$LINES {}' -m | paste -s -d " "
+}

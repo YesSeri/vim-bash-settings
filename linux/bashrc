@@ -185,10 +185,10 @@ function __zoxide_z() {
 }
 
 # Jump to a directory using interactive search.
-function __zoxide_zi() {
-    \builtin local result
-    result="$(\command zoxide query -i -- "$@")" && __zoxide_cd "${result}"
-}
+#function __zoxide_zi() {
+    #\builtin local result
+    #result="$(\command zoxide query -i -- "$@")" && __zoxide_cd "${result}"
+#}
 
 # =============================================================================
 #
@@ -200,10 +200,10 @@ function z() {
     __zoxide_z "$@"
 }
 
-\builtin unalias zi &>/dev/null || \builtin true
-function zi() {
-    __zoxide_zi "$@"
-}
+#\builtin unalias zi &>/dev/null || \builtin true
+#function zi() {
+   #__zoxide_zi "$@"
+# }
 
 # Load completions.
 # - Bash 4.4+ is required to use `@Q`.
@@ -235,7 +235,7 @@ if [[ ${BASH_VERSINFO[0]:-0} -eq 4 && ${BASH_VERSINFO[1]:-0} -ge 4 || ${BASH_VER
     }
 
     \builtin complete -F __zoxide_z_complete -o filenames -- z
-    \builtin complete -r zi &>/dev/null || \builtin true
+    # \builtin complete -r zi &>/dev/null || \builtin true
 fi
 
 # =============================================================================
@@ -244,52 +244,18 @@ fi
 #
 # eval "$(zoxide init bash)"
 
-createLatex() {
-	file=$1
-	filename="${file%.*}"
-	outdir="out-${filename}"
-	mkdir -p $outdir && pandoc $file --standalone --output $outdir/$filename.tex && pdflatex -output-directory=$outdir $outdir/$filename.tex
-	find $outdir | rg .*(aux|log)$ | xargs rm
-	find $outdir -type f -iname '*.pdf' | xargs xdg-open
 
-}
-
-upgradeAptApps() {
-	sudo apt update -y && sudo apt upgrade -y 
-}
-
-install() {
-	sudo apt install $1 
-}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-alias vim='nvim'
-
-export EDITOR=nvim
-alias tree="lsd --tree --directory-only --ignore-glob '.*'"
-alias treeHidden="lsd --tree --directory-only"
-alias codet2="code /home/henrik/Documents/t2"
-
-alias volup="amixer sset Master 10%+"
-alias voldown="amixer sset Master 10%-"
-alias vol="amixer sset Master"
-
-alias brightup="sudo brightnessctl set +10%"
-alias brightdown="sudo brightnessctl  set 10%-"
-alias bright="sudo brightnessctl set"
-alias o="xdg-open"
-
-alias tablet="python3 /home/henrik/programming/scripts/scale.py"
-alias b-noise="/home/henrik/programming/scripts/brown_noise.sh"
-
-alias nnn="nnn -e"
-alias x="exit"
-alias x="gcc"
-alias buildgcc="gcc -Wall -g 8-1.c -o a.out"
-
 [ -f "/home/henrik/.ghcup/env" ] && source "/home/henrik/.ghcup/env" # ghcup-env
 # Created by `userpath` on 2023-02-16 12:12:52
+
+# Exported variables
 export PATH="$PATH:/home/henrik/.local/bin"
+export EDITOR=nvim
+# Install Ruby Gems to ~/gems
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"

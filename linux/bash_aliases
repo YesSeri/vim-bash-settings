@@ -2,6 +2,18 @@
 # if [ -f ~/.bash_aliases ]; then
 #     . ~/.bash_aliases
 # fi
+#
+# copy bashrc and bash aliases command 
+#
+# this finds relevant files
+# fd --hidden "^.?bash(_aliases|rc)$" ~ 
+#
+# use this from inside vim with ctrl+x ctrl+e on cli
+# :r ! fd --hidden "^.?bash(_aliases|rc)$" ~ 
+#
+# the command should look like this kind of
+# cp /home/henrik/.bashrc /home/henrik/programming/docs/vim-bash-settings/linux/bashrc && cp /home/henrik/.bash_aliases /home/henrik/programming/docs/vim-bash-settings/linux/bash_aliases
+
 myuptime () {
   uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
   return;
@@ -21,10 +33,10 @@ alias o="xdg-open"
 alias tablet="python3 /home/henrik/programming/scripts/scale.py"
 alias b-noise="/home/henrik/programming/scripts/brown_noise.sh"
 
-alias nnn="nnn -e -H" 
+alias nnn="nnn -e" 
 # -e = edit in $EDITOR
 # -H = show hidden
-alias x="exit"
+alias q="exit"
 alias buildgcc="gcc -Wall -g $1 -o a.out"
 alias ec="emacsclient -n"
 alias lc3="/home/henrik/Documents/t2/machine/LC_3_Simulator/LC3Tools-2.0.2.AppImage"
@@ -51,8 +63,6 @@ install() {
 	sudo apt install $1
 }
 
-alias redo='sudo !!'
-
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
 alias glogall='git log --graph --full-history --all --color --oneline'
@@ -69,6 +79,55 @@ alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)" .'
 alias foxit='/home/henrik/.installedPrograms/foxitsoftware/foxitreader/FoxitReader.sh'
 
 
+# pick files with extension as argument
 filepick-extension() {
-	fd -e rs | fzf --preview='head -$LINES {}' -m | paste -s -d " "
+	fd -e $1 | fzf --preview='head -$LINES {}' -m | paste -s -d " "
 }
+
+rga-fzf() {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
+
+alias zim='fzf --multi --print0 | xargs --no-run-if-empty -0 -o vim'
+alias fdext='fd . -e'
+alias py='python3'
+
+
+history-no-lines() {
+	history|awk '{$1="";print substr($0,2)}'
+}
+alias pretty-path="echo $PATH | sed 's/\:/\n/g'"
+
+
+#extract all archives!
+extract () {
+   if [ -f $1 ] ; then
+       case $1 in
+    *.tar.bz2)  tar xvjf $1 && cd $(basename "$1" .tar.bz2) ;;
+    *.tar.gz)   tar xvzf $1 && cd $(basename "$1" .tar.gz) ;;
+    *.tar.xz)   tar Jxvf $1 && cd $(basename "$1" .tar.xz) ;;
+    *.bz2)      bunzip2 $1 && cd $(basename "$1" /bz2) ;;
+    *.rar)      unrar x $1 && cd $(basename "$1" .rar) ;;
+    *.gz)       gunzip $1 && cd $(basename "$1" .gz) ;;
+    *.tar)      tar xvf $1 && cd $(basename "$1" .tar) ;;
+    *.tbz2)     tar xvjf $1 && cd $(basename "$1" .tbz2) ;;
+    *.tgz)      tar xvzf $1 && cd $(basename "$1" .tgz) ;;
+    *.zip)      unzip $1 && cd $(basename "$1" .zip) ;;
+    *.Z)        uncompress $1 && cd $(basename "$1" .Z) ;;
+    *.7z)       7z x $1 && cd $(basename "$1" .7z) ;;
+    *)      echo "don't know how to extract '$1'..." ;;
+       esac
+   else
+       echo "'$1' is not a valid file!"
+   fi
+ }

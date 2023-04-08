@@ -242,8 +242,6 @@ fi
 #
 # eval "$(zoxide init bash)"
 
-
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -259,3 +257,12 @@ export PATH="$HOME/gems/bin:$PATH"
 
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
+export TERMINAL=gnome-terminal
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --multi'
+export FZF_DEFAULT_OPTS=''
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS=""

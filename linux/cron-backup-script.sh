@@ -13,4 +13,6 @@ git commit -m "Backup: $(date)"
 
 git push origin main
 
-echo "$(date) : backup to git"
+echo "$(date) : backup to git" >> /home/henrik/programming/docs/vim-bash-settings/linux/script.log
+
+

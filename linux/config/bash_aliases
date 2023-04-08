@@ -152,3 +152,4 @@ rgi(){
 }
 
 alias lsg="ls --group-directories-first"
+alias sapti="sudo apt install "

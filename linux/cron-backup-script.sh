@@ -9,10 +9,15 @@ cp -r /home/henrik/.doom.d 				/home/henrik/programming/docs/vim-bash-settings/l
 
 git add /home/henrik/programming/docs/vim-bash-settings/linux/config/bat/config /home/henrik/programming/docs/vim-bash-settings/linux/config/bashrc /home/henrik/programming/docs/vim-bash-settings/linux/config/fzf.bash /home/henrik/programming/docs/vim-bash-settings/linux/config/bash_aliases /home/henrik/programming/docs/vim-bash-settings/linux/config/nvim/init.vim /home/henrik/programming/docs/vim-bash-settings/linux/config/doom.d
 
-git commit -m "Backup: $(date)"
+if [[ `git status --porcelain` ]]; then
 
-git push origin main
+	git commit -m "Backup: $(date)"
 
-echo "$(date) : backup to git" >> /home/henrik/programming/docs/vim-bash-settings/linux/script.log
+	git push origin main
 
+	echo "$(date) : backup to git" >> /home/henrik/programming/docs/vim-bash-settings/linux/script.log
+
+else
+	echo "$(date) : nothing to backup" >> /home/henrik/programming/docs/vim-bash-settings/linux/script.log
+fi
 

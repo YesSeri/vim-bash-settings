@@ -1,0 +1,12 @@
+/home/henrik/Videos 
+/home/henrik/Pictures 
+/home/henrik/Desktop
+/home/henrik/Downloads 
+/home/henrik/programming
+/home/henrik/*/node_modules 
+/home/henrik/*/target 
+/home/henrik/.cache
+/home/henrik/.mozilla
+/home/henrik/.npm
+/home/henrik/.nvm
+/home/henrik/.local/share/Trash/

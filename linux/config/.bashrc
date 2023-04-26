@@ -262,7 +262,14 @@ export TERMINAL=gnome-terminal
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --multi'
-export FZF_DEFAULT_OPTS=''
-# Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS=""
+export BORG_REPO="/home/henrik/.borg-backup"
+export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
+JAVA_HOME="~/.jdks/corretto-19.0.2/"
+export JAVA_HOME
+PATH=$PATH:$JAVA_HOME/bin
+export PATH
+alias vpnup="wg-quick up se4-wireguard"
+alias vpndown="wg-quick down se4-wireguard"
+
+export PATH="$HOME/.config/emacs/bin:$PATH"
+export NNN_COLORS='1234'

@@ -29,7 +29,6 @@ myuptime () {
 	return;
 }
 
-alias vim='nvim'
 
 alias volup="amixer sset Master 10%+"
 alias voldown="amixer sset Master 10%-"
@@ -42,7 +41,7 @@ alias o="xdg-open"
 alias x="exit"
 
 alias tablet="python3 /home/henrik/programming/scripts/scale.py"
-alias brownnoise="/home/henrik/programming/scripts/brown_noise.sh"
+alias brownnoise="/home/henrik/programming/vim-bash-settings/linux/scripts/brown_noise.sh"
 
 alias nnn="nnn -e" 
 # -e = edit in $EDITOR
@@ -82,7 +81,7 @@ alias gpull='git pull'
 # Full info and hidden files
 alias lah='ls -lah'
 
-alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)" .'
+alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)"'
 
 alias foxit='/home/henrik/.installedPrograms/foxitsoftware/foxitreader/FoxitReader.sh'
 
@@ -152,4 +151,5 @@ rgi(){
 }
 
 alias lsg="ls --group-directories-first"
-alias sapti="sudo apt install "
+alias fzfprev="fd --max-depth 1 | fzf -m --preview 'bat --color always {}' --preview-window right:70%"
+

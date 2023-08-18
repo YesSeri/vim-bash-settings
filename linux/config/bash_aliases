@@ -29,6 +29,18 @@ myuptime() {
 	return
 }
 
+awkprint() {
+	awk -v width="$2" -F ',' '
+	{
+
+	for(i=1; i<=NF; i++) {
+		printf("%*s", width, $i)
+	}
+	print ""
+
+	}' $1
+
+}
 alias volup="amixer sset Master 10%+"
 alias voldown="amixer sset Master 10%-"
 alias vol="amixer sset Master"

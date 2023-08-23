@@ -13,7 +13,7 @@ eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
 
 # install essentials
-sudo apt install curl build-essential pandoc qbittorrent htop sox zathura nnn brightnessctl xclip nautilus-dropbox audacity musescore vlc
+sudo apt install curl build-essential pandoc qbittorrent htop sox zathura nnn brightnessctl xclip nautilus-dropbox audacity musescore vlc vim
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
@@ -36,3 +36,6 @@ sudo snap install tree bitwarden
 # Mullvad
 wget -P ~/Downloads/ --content-disposition https://mullvad.net/download/app/deb/latest && sudo apt install -y ~/Downloads/MullvadVPN*md64.deb
 
+# nvim plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'

@@ -1,14 +1,38 @@
-# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-# curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-cargo install cargo-binstall
-cargo binstall bat
+EMAIL="henrik.zenkert@gmail.com"
+NAME="Henrik Zenkert"
+# update everything
+sudo apt update && sudo apt upgrade -y
+# install git, if I want to download this repo
+sudo apt install git
+# setup git
+git config --global user.email $EMAIL
+git config --global user.name $NAME
+# create ssh key
+ssh-keygen -t ed25519 -C $EMAIL -N '' -f $HOME/.ssh/id_ed25519
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
 
-# Replacement for find. 
-cargo binstall fd-find
-cargo binstall exa
+# install essentials
+sudo apt install curl build-essential pandoc qbittorrent htop sox zathura nnn brightnessctl xclip nautilus-dropbox audacity musescore vlc
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# install neovim
+sudo snap install nvim --classic
+
+# install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+PATH=$PATH:$HOME/.cargo/bin
+# Install kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+
+# Install binstall and rust programs
+curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+cargo binstall --no-confirm ripgrep fd-find zoxide --locked bat xh
 
 # Install from source to get latest version. apt version is missing many features, e.g. ctrl-t, ctrl-r, alt-c, etc.
-#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-#~/.fzf/install
+sudo snap install tree bitwarden
 
- sudo zypper install curl neovim build-essential pandoc qbittorrent wireshark ripgrep htop sox git zathura nnn brightnessctl xclip complx-tools nautilus-dropbox zathura audacity bitwarden code datagrip discord emacs fbreader firefox intellij-idea-ultimate krita musescore okular postman vlc
+# Mullvad
+wget -P ~/Downloads/ --content-disposition https://mullvad.net/download/app/deb/latest && sudo apt install -y ~/Downloads/MullvadVPN*md64.deb
+

@@ -35,22 +35,23 @@ set shiftwidth=4
 noremap <F9> :source $MYVIMRC<CR>
 noremap <F8> :echo &filetype<CR>
 noremap <F5> :call RunProgram()<CR>
+
 noremap <leader>c :call CommentLine()<CR>
 
 colorscheme ron
 
 function CommentLine()
 	if &filetype == "rust"
-		:norm 0i//
+		:norm I//
 	elseif &filetype == "vim"
-		:norm 0i"
+		:norm I"
 	elseif &filetype == "lua"
-		:norm 0i--
+		:norm I--
 	elseif &filetype == "python"
-		:norm 0i#
+		:norm I#
 	else
 		echo 'Commenting not implemented, using most common comment, //'
-		:norm 0i//
+		:norm I//
 	endif
 
 endfunction

@@ -150,6 +150,6 @@ rgi(){
 	fzf --bind "change:reload:$RG_PREFIX {q} || true" --ansi --disabled --query "$INITIAL_QUERY" --layout=reverse
 }
 
-alias lsg="ls --group-directories-first"
 alias fzfprev="fd --max-depth 1 | fzf -m --preview 'bat --color always {}' --preview-window right:70%"
 
+alias n="nvim"

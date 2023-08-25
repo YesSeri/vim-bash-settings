@@ -251,9 +251,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Exported variables
 export EDITOR=nvim
-# Install Ruby Gems to ~/gems
-export GEM_HOME="$HOME/gems"
-export PATH="$HOME/gems/bin:$PATH"
 
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
@@ -264,10 +261,6 @@ export TERMINAL=gnome-terminal
 
 export BORG_REPO="/home/henrik/.borg-backup"
 export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
-JAVA_HOME="~/.jdks/corretto-19.0.2/"
-export JAVA_HOME
-PATH=$PATH:$JAVA_HOME/bin
-export PATH
 alias vpnup="wg-quick up se4-wireguard"
 alias vpndown="wg-quick down se4-wireguard"
 

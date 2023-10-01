@@ -1,17 +1,4 @@
-EMAIL="henrik.zenkert@gmail.com"
-NAME="Henrik Zenkert"
-# update everything
-sudo apt update && sudo apt upgrade -y
-# install git, if I want to download this repo
-sudo apt install git
-# setup git
-git config --global user.email $EMAIL
-git config --global user.name $NAME
-# create ssh key
-ssh-keygen -t ed25519 -C $EMAIL -N '' -f $HOME/.ssh/id_ed25519
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-
+./subscripts/git-setup.sh
 # install essentials
 sudo apt install curl build-essential pandoc qbittorrent htop sox zathura nnn brightnessctl xclip nautilus-dropbox audacity musescore vlc vim
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -42,9 +29,4 @@ wget -P ~/Downloads/ --content-disposition https://mullvad.net/download/app/deb/
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-# lazygit
-LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-curl -Lo ~/Downloads/lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-tar xf ~/Downloads/lazygit.tar.gz lazygit
-sudo install lazygit /usr/local/bin
-rm lazygit
+./subscripts/lazygit.sh

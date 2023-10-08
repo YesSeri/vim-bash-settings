@@ -137,8 +137,7 @@ export TERMINAL=gnome-terminal
 
 export BORG_REPO="/home/henrik/.borg-backup"
 export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
-alias vpnup="wg-quick up se4-wireguard"
-alias vpndown="wg-quick down se4-wireguard"
+alias lg="lazygit"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"

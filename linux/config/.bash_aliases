@@ -61,6 +61,12 @@ createLatex() {
 
 }
 
+runit() {
+	rest="${@:1}"
+	eval $($rest | fzf --reverse)
+
+}
+
 
 upgradeAptApps() {
 	sudo apt update -y && sudo apt upgrade -y

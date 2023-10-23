@@ -135,10 +135,12 @@ export TERMINAL=gnome-terminal
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export BORG_REPO="/home/henrik/.borg-backup"
-export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
+#export BORG_REPO="/home/henrik/.borg-backup"
+#export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
 alias lg="lazygit"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export NNN_COLORS='1234'
+
+#export FZF_DEFAULT_COMMAND='fd --type f'

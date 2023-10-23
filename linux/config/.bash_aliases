@@ -149,13 +149,13 @@ Tldr () {
 
 alias History="history-no-lines | tac | sortKeepOrder | fzf --height=50% --border"
 
-rgi(){
-	INITIAL_QUERY=""
-	RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-	FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" 
-	fzf --bind "change:reload:$RG_PREFIX {q} || true" --ansi --disabled --query "$INITIAL_QUERY" --layout=reverse
-}
+# rgi(){
+# 	INITIAL_QUERY=""
+# 	RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+# 	FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" 
+# 	fzf --bind "change:reload:$RG_PREFIX {q} || true" --ansi --disabled --query "$INITIAL_QUERY" --layout=reverse
+# }
 
-alias fzfprev="fd --max-depth 1 | fzf -m --preview 'bat --color always {}' --preview-window right:70%"
+# alias fzfprev="fd --max-depth 1 | fzf -m --preview 'bat --color always {}' --preview-window right:70%"
 
-alias n="nvim"
+# alias n="nvim"

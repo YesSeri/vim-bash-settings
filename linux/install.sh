@@ -12,7 +12,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 PATH=$PATH:$HOME/.cargo/bin
 # Install kitty
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+mkdir -p ~/.local/bin/
+ln -sf ~/.local/kitty.app/bin/kitten ~/.local/bin/
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator `which kitty` 50
 
 # Install binstall and rust programs

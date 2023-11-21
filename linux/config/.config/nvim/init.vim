@@ -1,16 +1,15 @@
 call plug#begin()
-Plug 'akinsho/bufferline.nvim'
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+" Plug 'akinsho/bufferline.nvim'
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
+Plug 'marko-cerovac/material.nvim'
 
-" -- Debugging LSP
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'mfussenegger/nvim-dap'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+Plug 'pocco81/true-zen.nvim'
 call plug#end()
 
 lua require('keymap')
@@ -38,7 +37,7 @@ noremap <F5> :call RunProgram()<CR>
 
 noremap <leader>c :call CommentLine()<CR>
 
-colorscheme ron
+colorscheme material-deep-ocean
 
 function CommentLine()
 	if &filetype == "rust"
@@ -80,3 +79,5 @@ inoremap <expr> <c-x><c-f> fzf#vim#complete#path('rg --files')
 noremap <expr> <c-x><c-f> ":Files<CR>"
 noremap <expr> <c-x><c-b> ":Buffers<CR>"
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+set number

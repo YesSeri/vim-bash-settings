@@ -159,3 +159,12 @@ alias History="history-no-lines | tac | sortKeepOrder | fzf --height=50% --borde
 # alias fzfprev="fd --max-depth 1 | fzf -m --preview 'bat --color always {}' --preview-window right:70%"
 
 # alias n="nvim"
+function kssh ()
+{
+	if [[ "$TERM" == "xterm-kitty" ]]; then
+		kitten ssh "$@" 
+	else
+		ssh "$@"
+	fi
+}
+

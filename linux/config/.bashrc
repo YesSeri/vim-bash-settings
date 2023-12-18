@@ -2,6 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+if [ -f "$HOME/.bash_custom" ] ; then
+	. "$HOME/.bash_custom"
+fi
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;

@@ -5,6 +5,9 @@
 if [ -f "$HOME/.bash_custom" ] ; then
 	. "$HOME/.bash_custom"
 fi
+if [ -f "$HOME/.bash_custom_temp" ] ; then
+	. "$HOME/.bash_custom_temp"
+fi
 
 # If not running interactively, don't do anything
 case $- in
@@ -148,3 +151,8 @@ export PATH="$HOME/.config/emacs/bin:$PATH"
 export NNN_COLORS='1234'
 
 #export FZF_DEFAULT_COMMAND='fd --type f'
+run_detached() {
+    nohup "$@" </dev/null >/dev/null 2>&1 &
+    disown
+}
+

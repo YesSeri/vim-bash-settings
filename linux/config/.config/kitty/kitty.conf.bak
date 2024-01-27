@@ -1,5 +1,5 @@
 # BEGIN_KITTY_THEME
-# 1984 Dark
+# Falcon
 include current-theme.conf
 # END_KITTY_THEME
 enabled_layouts tall, fat

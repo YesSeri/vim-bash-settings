@@ -184,3 +184,12 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+
+# Custom windows
+# xprop finds class name
+assign [class="firefox"] $ws2
+for_window [class="firefox"] workspace number $ws2
+
+assign [class="code"] $ws1
+for_window [class="code"] workspace number $ws1

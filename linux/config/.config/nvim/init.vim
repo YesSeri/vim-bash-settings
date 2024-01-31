@@ -82,12 +82,15 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 set number
 function MakeMatrix()
-	%s/ /,/g
+	%s/ *$//
+	%s/ /, /g
 	:1norm I<
 	:$norm A>
-	2,$-1 norm I	<
+	2,$-1 norm I  <
 	2,$-1 norm A>
 	2,$-2 norm A | 
 endfunction
 
 noremap <F6> :call MakeMatrix()<CR>
+
+set clipboard=unnamedplus

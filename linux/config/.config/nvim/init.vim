@@ -81,6 +81,10 @@ noremap <expr> <c-x><c-b> ":Buffers<CR>"
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 set number
+" Make a matrix for use in maple.
+" It should be numbers seperated by spaces
+" It is transposed, compared to how it is in lecture,
+" because maple wants it the 'wrong' way.
 function MakeMatrix()
 	%s/ *$//
 	%s/ /, /g

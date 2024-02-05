@@ -193,8 +193,8 @@ bar {
 bindsym Control+$alt+t exec kitty
 # Custom windows
 # xprop finds class name
-assign [class="firefox"] $ws2
-assign [class="code"] $ws1
+# assign [class="firefox"] $ws2
+# assign [class="code"] $ws1
 
 bindsym $mod+Shift+Up exec --no-startup-id sudo brightnessctl set +5%
 bindsym $mod+Shift+Down exec --no-startup-id sudo brightnessctl set 5%-

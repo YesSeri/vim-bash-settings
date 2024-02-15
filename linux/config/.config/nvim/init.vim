@@ -40,12 +40,13 @@ noremap <leader>c :call CommentLine()<CR>
 colorscheme material-deep-ocean
 
 function CommentLine()
-	if &filetype == "rust"
-		:norm I//
-	elseif &filetype == "vim"
+	"echo &filetype
+	if &filetype == "vim"
 		:norm I"
 	elseif &filetype == "lua"
 		:norm I--
+	elseif &filetype == "tex"
+		:norm I%
 	elseif &filetype == "python"
 		:norm I#
 	else
@@ -88,13 +89,12 @@ set number
 function MakeMatrix()
 	%s/ *$//
 	%s/ /, /g
-	:1norm I<
-	:$norm A>
-	2,$-1 norm I  <
-	2,$-1 norm A>
-	2,$-2 norm A | 
+	%norm I  [
+	%norm A]
+	1,$-1 norm A, 
+	:1norm Im:=Matrix([k<<
+	:$norm A])<<
+	:norm ggVG"+y
 endfunction
 
-noremap <F6> :call MakeMatrix()<CR>
-
-set clipboard=unnamedplus
+noremap <silent> <F6> :call MakeMatrix()<CR>

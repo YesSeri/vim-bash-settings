@@ -156,3 +156,5 @@ run_detached() {
     disown
 }
 
+setxkbmap -layout us,dk,se
+setxkbmap -option 'grp:alt_shift_toggle'

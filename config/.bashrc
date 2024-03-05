@@ -158,3 +158,5 @@ run_detached() {
 
 setxkbmap -layout us,dk,se
 setxkbmap -option 'grp:alt_shift_toggle'
+
+alias syncwatch='watch -d grep -e Dirty: -e Writeback: /proc/meminfo'

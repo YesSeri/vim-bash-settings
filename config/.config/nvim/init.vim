@@ -1,7 +1,4 @@
 call plug#begin()
-" Plug 'akinsho/bufferline.nvim'
-
-" LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'marko-cerovac/material.nvim'
@@ -9,13 +6,17 @@ Plug 'marko-cerovac/material.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'pocco81/true-zen.nvim'
+Plug 'github/copilot.vim'
 call plug#end()
 
 lua require('keymap')
 lua require('lsp')
 lua require('plugs')
 
+" Set the runtime path to include Vundle and initialize
 set hidden
 " Who wants .swap files??
 set noswapfile
@@ -45,6 +46,13 @@ function CommentLine()
 		:norm I"
 	elseif &filetype == "lua"
 		:norm I--
+	elseif &filetype == "css"
+		let commented = ! match(getline('.'), '\s*\/\*.*')
+		if commented
+			execute 's@\v/\* ?(.*)\*/@\1@'
+		else
+			execute 's@\v(\s)*(.*[;{}])?@\1/\* \2 \*/'
+		endif
 	elseif &filetype == "tex"
 		:norm I%
 	elseif &filetype == "python"
@@ -98,3 +106,23 @@ function MakeMatrix()
 endfunction
 
 noremap <silent> <F6> :call MakeMatrix()<CR>
+" Turn persistent undo on
+" means that you can undo even when you close a buffer/VIM
+set undodir=~/.vim_runtime/temp_dirs/undodir
+set undofile
+
+
+function ToggleCopilot()
+	if exists('g:copilot_enabled') && g:copilot_enabled == 1
+		let g:copilot_enabled = 0
+		echo 'Copilot disabled'
+	else
+		let g:copilot_enabled = 1
+		echo 'Copilot enabled'
+	endif
+endfunction
+
+" toggle copilot
+noremap <silent> <F4> :call ToggleCopilot()<CR>
+" show copilot on or off in bottom bar
+

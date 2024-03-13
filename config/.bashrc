@@ -154,7 +154,6 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.config/emacs/bin:$PATH"
 export NNN_COLORS='1234'
 
-#export FZF_DEFAULT_COMMAND='fd --type f'
 run_detached() {
     nohup "$@" </dev/null >/dev/null 2>&1 &
     disown

@@ -61,11 +61,6 @@ createLatex() {
 
 }
 
-runit() {
-	rest="${@:1}"
-	eval $($rest | fzf --reverse)
-
-}
 
 
 upgradeAptApps() {
@@ -92,13 +87,6 @@ alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)"'
 alias foxit='/home/henrik/.installedPrograms/foxitsoftware/foxitreader/FoxitReader.sh'
 
 
-# pick files with extension as argument
-filepick-extension() {
-fd -e $1 | fzf --preview='head -$LINES {}' -m | paste -s -d " "
-}
-alias zim='fzf --multi --print0 | xargs --no-run-if-empty -0 -o vim'
-alias fdext='fd . -e'
-alias py='python3'
 
 
 history-no-lines() {
@@ -149,16 +137,8 @@ Tldr () {
 
 alias History="history-no-lines | tac | sortKeepOrder | fzf --height=50% --border"
 
-# rgi(){
-# 	INITIAL_QUERY=""
-# 	RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-# 	FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY'" 
-# 	fzf --bind "change:reload:$RG_PREFIX {q} || true" --ansi --disabled --query "$INITIAL_QUERY" --layout=reverse
-# }
+alias n="nvim"
 
-# alias fzfprev="fd --max-depth 1 | fzf -m --preview 'bat --color always {}' --preview-window right:70%"
-
-# alias n="nvim"
 function kssh ()
 {
 	if [[ "$TERM" == "xterm-kitty" ]]; then

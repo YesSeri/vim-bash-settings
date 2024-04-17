@@ -100,7 +100,7 @@ function MakeMatrix()
 	%norm I  [
 	%norm A]
 	1,$-1 norm A, 
-	:1norm Im:=Matrix([k<<
+	:1norm IA:=Matrix([k<<
 	:$norm A])<<
 	:norm ggVG"+y
 endfunction

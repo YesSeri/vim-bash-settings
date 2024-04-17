@@ -214,3 +214,5 @@ mode "exit: [l]ogout, [r]eboot, [s]hutdown" {
 bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 
 focus_follows_mouse no
+
+bindsym $mod+p move workspace to output right

@@ -1,11 +1,7 @@
 -- mason https://github.com/williamboman/mason.nvim
 require("mason").setup()
 -- mason-lspconfig https://github.com/williamboman/mason-lspconfig.nvim
-require("mason-lspconfig").setup_handlers {
---	function (server_name) -- default handler (optional)
---		print(server_name)
---	end,
-}
+require("mason-lspconfig").setup()
 
 local lspconfig = require('lspconfig')
 -- pythone

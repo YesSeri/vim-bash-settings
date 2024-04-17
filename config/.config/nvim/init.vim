@@ -1,10 +1,12 @@
 call plug#begin()
 Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
+Plug 'simrat39/inlay-hints.nvim'
 Plug 'marko-cerovac/material.nvim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
@@ -126,3 +128,14 @@ endfunction
 noremap <silent> <F4> :call ToggleCopilot()<CR>
 " show copilot on or off in bottom bar
 
+" run prettier on current file
+nnoremap gp :silent %!npx prettier --stdin-filepath %<CR>
+
+" set linebreak for markdown and sql
+augroup setupLinebreak
+    autocmd!
+    autocmd FileType markdown,sql setlocal linebreak
+augroup END
+
+let g:markdown_folding = 1
+set foldlevel=1

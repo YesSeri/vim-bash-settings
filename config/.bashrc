@@ -107,7 +107,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -AlFht'
+alias ll='ls -AlFh'
 alias lf='fd --maxdepth 1 --type f --absolute-path'
 alias l='ls -CF'
 
@@ -163,3 +163,5 @@ setxkbmap -layout us,dk,se
 setxkbmap -option 'grp:alt_shift_toggle'
 
 alias syncwatch='watch -d grep -e Dirty: -e Writeback: /proc/meminfo'
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

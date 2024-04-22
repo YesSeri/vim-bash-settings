@@ -13,6 +13,7 @@ PATH=$PATH:$HOME/.cargo/bin
 # Install kitty
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 mkdir -p ~/.local/bin/
+ln -sf ~/.local/kitty.app/bin/kitty  ~/.local/bin/
 ln -sf ~/.local/kitty.app/bin/kitten ~/.local/bin/
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator `which kitty` 50
 
@@ -32,3 +33,5 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 ./subscripts/lazygit.sh
 $(./subscripts/dropbox.sh)
+# nvm - node version manager
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash

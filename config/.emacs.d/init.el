@@ -78,10 +78,17 @@
 (which-key-mode)
 
 ;; lsp
+;; Add Erlang mode directory to load-path
+(add-to-list 'load-path "/usr/lib/erlang/lib/tools-3.5.2/emacs/")
+
+;; Load Erlang mode
+(require 'erlang-start)
+
 (require 'eglot)
 (add-to-list 'eglot-server-programs '(rust-mode . ("rust-analyzer")))
 (add-hook 'rust-mode-hook 'eglot-ensure)
 
+(add-to-list 'eglot-server-programs '(python-mode . ("pylsp")))
 
 ;; Make Elisp files in that directory available to the user.
 ;; https://protesilaos.com/emacs/ef-themes
@@ -119,7 +126,8 @@
  '(custom-enabled-themes '(ef-deuteranopia-dark))
  '(custom-safe-themes
    '("5b338bbf32cb7c1d6d1f95687eb680ab62b8ebbb1f8a9602aeecb93ca4d02012" "b4b3c720a4ef5baa8e01645085920aceaf17bac9122da24069821a21704a8917" default))
- '(org-agenda-files '("~/Dropbox/orgzly/todo.org"))
+ '(org-agenda-files
+   '("~/Dropbox/orgzly/notes.org" "/home/henrik/Dropbox/orgzly/todo.org"))
  '(package-selected-packages
    '(rust-mode web-mode counsel ivy projectile magit which-key-posframe which-key evil))
  '(warning-suppress-log-types '((comp) (comp) (comp))))

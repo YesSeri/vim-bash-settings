@@ -139,3 +139,4 @@ augroup END
 
 let g:markdown_folding = 1
 set foldlevel=1
+set rtp^="/home/henrik/.opam/default/share/ocp-indent/vim"

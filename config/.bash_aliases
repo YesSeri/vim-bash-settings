@@ -147,4 +147,26 @@ function kssh ()
 		ssh "$@"
 	fi
 }
+function fman() {
+    man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
+}
+export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
 
+function fv() {
+	rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+	  fzf --ansi \
+              --reverse \
+	      --color "hl:-1:underline,hl+:-1:underline:reverse" \
+	      --delimiter : \
+	      --preview 'bat --color=always {1} --highlight-line {2}' \
+	      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
+	      --bind 'enter:become(vim {1} +{2})'
+}
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}

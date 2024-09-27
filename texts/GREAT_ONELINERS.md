@@ -1,6 +1,9 @@
 # Commands
+
 A list of smart commands I've created or "stolen".
+
 ## Git
+
 interactive git add. Think I created this.
 `git add $(git ls-files -m -o --exclude-standard | fzf -m)`
 latest commit

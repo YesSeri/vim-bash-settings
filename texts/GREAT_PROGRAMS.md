@@ -5,10 +5,10 @@ install cargo-binstall for quicker installation. `cargo binstall cargo-binstall`
 | link                                           | install command                  |
 | ---------------------------------------------- | -------------------------------- |
 | <https://github.com/marcusbuffett/pipe-rename> | `cargo binstall pipe-rename`     |
-| <https://github.com/unfrl/dug>                 | ` choco binstall dug`            |
+| <https://github.com/unfrl/dug>                 | `cargo binstall dug`            |
 | <https://github.com/ajeetdsouza/zoxide>        | `cargo binstall zoxide --locked` |
 | <https://github.com/theryangeary/choose>       | `cargo binstall choose`          |
-| <https://github.com/junegunn/fzf>              | `choco binstall fzf`             |
+| <https://github.com/junegunn/fzf>              | `cargo binstall fzf`             |
 | <https://github.com/sharkdp/bat>               | `cargo binstall bat`             |
 | <https://github.com/theryangeary/choose>       | `cargo binstall choose`          |
 | <https://github.com/ducaale/xh>                | `cargo binstall xh`              |

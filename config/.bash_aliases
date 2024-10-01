@@ -170,3 +170,22 @@ function yy() {
 	fi
 	rm -f -- "$tmp"
 }
+
+alias clip='tr --delete "\n" | xclip -sel clipboard'
+light(){
+	MIN=100
+	MAX=`cat /sys/class/backlight/intel_backlight/max_brightness`
+	VAL=$1
+	if [ "$#" -ne 1 ]; then
+		echo "Illegal number of parameters"
+		echo "Usage: light <$MIN - $MAX>"
+		return 1
+	fi
+	if [[ $1 -lt $MIN ]]; then
+		VAL=$MIN
+	elif [[ $1 -gt $MAX ]]; then
+		VAL=$MAX
+	fi
+	echo "brightness is $VAL, $(((VAL*100)/$MAX))%"
+	sudo sh -c "echo $VAL > /sys/class/backlight/intel_backlight/brightness"
+}

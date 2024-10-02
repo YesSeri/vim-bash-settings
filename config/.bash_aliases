@@ -172,6 +172,7 @@ function yy() {
 }
 
 alias clip='tr --delete "\n" | xclip -sel clipboard'
+
 light(){
 	MIN=100
 	MAX=`cat /sys/class/backlight/intel_backlight/max_brightness`
@@ -181,11 +182,17 @@ light(){
 		echo "Usage: light <$MIN - $MAX>"
 		return 1
 	fi
+	if [[ $* == *--help* ]]; then
+		echo "Usage: light <MIN - MAX>"
+		echo "MIN: $MIN"
+		echo "MAX: $MAX"
+		return 0
+	fi
 	if [[ $1 -lt $MIN ]]; then
 		VAL=$MIN
 	elif [[ $1 -gt $MAX ]]; then
 		VAL=$MAX
 	fi
-	echo "brightness is $VAL, $(((VAL*100)/$MAX))%"
 	sudo sh -c "echo $VAL > /sys/class/backlight/intel_backlight/brightness"
+	echo "brightness is $VAL, $(((VAL*100)/$MAX))%"
 }

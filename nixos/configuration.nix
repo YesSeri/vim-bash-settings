@@ -7,8 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -43,29 +43,29 @@
   };
 
  # UI
-  environment.pathsToLink = [ "/libexec" ];
+ environment.pathsToLink = [ "/libexec" ];
 
-  services.xserver = {
-    enable = true;
-    layout = "us";
-    desktopManager = {
-      xterm.enable = false;
-    };
-  };
+ services.xserver = {
+   enable = true;
+   layout = "us";
+   desktopManager = {
+     xterm.enable = false;
+   };
+ };
 
-  services.displayManager = {
-    defaultSession = "none+i3";
-  };
+ services.displayManager = {
+   defaultSession = "none+i3";
+ };
 
-  services.xserver.windowManager.i3 = {
-    enable = true;
-    extraPackages = with pkgs; [
-      dmenu
-      i3status
-      i3lock
-    ];
-  };
-  
+ services.xserver.windowManager.i3 = {
+   enable = true;
+   extraPackages = with pkgs; [
+     dmenu
+     i3status
+     i3lock
+   ];
+ };
+
   ## Enable the X11 windowing system.
   #services.xserver.enable = true;
   #
@@ -107,12 +107,20 @@
     description = "henrik";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-        jq
-	bitwarden-desktop
-	qbittorrent
-        steam
-        tmux
-
+      libreoffice-qt6-still
+      audacity
+      bitwarden-desktop
+      qbittorrent
+      dropbox
+      jq
+      mullvad
+      mullvad-vpn
+      neovim
+      rustup
+      steam
+      tmux
+      vlc
+      zoxide
     ];
   };
   programs.steam = {
@@ -144,7 +152,11 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
+    nodejs_22
     bat
+    gcc
+    unzip
+    gnumake
     curl
     fzf
     git
@@ -154,7 +166,7 @@
     ripgrep
     tealdeer
     tree
-    vim
+    vimHugeX
     wget
   ];
 

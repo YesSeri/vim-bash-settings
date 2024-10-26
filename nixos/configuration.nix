@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -22,7 +23,8 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  services.connman.enable = true;
+  #networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
@@ -42,29 +44,23 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
- # UI
- environment.pathsToLink = [ "/libexec" ];
+  # UI
+  environment.pathsToLink = [ "/libexec" ];
 
- services.xserver = {
-   enable = true;
-   layout = "us";
-   desktopManager = {
-     xterm.enable = false;
-   };
- };
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.variant = "";
+  services.xserver.enable = true;
+  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.windowManager.i3 = {
+    enable = true;
+    extraPackages = with pkgs; [
+      dmenu
+      i3status
+      i3lock
+    ];
+  };
 
- services.displayManager = {
-   defaultSession = "none+i3";
- };
-
- services.xserver.windowManager.i3 = {
-   enable = true;
-   extraPackages = with pkgs; [
-     dmenu
-     i3status
-     i3lock
-   ];
- };
+  services.displayManager.defaultSession = "none+i3";
 
   ## Enable the X11 windowing system.
   #services.xserver.enable = true;
@@ -72,12 +68,6 @@
   ## Enable the GNOME Desktop Environment.
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -107,16 +97,18 @@
     description = "henrik";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      libreoffice-qt6-still
       audacity
       bitwarden-desktop
-      qbittorrent
       dropbox
+      fd
       jq
+      libreoffice-qt6-still
       mullvad
       mullvad-vpn
       neovim
+      qbittorrent
       rustup
+      sshfs
       steam
       tmux
       vlc
@@ -152,20 +144,22 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
-    nodejs_22
     bat
-    gcc
-    unzip
-    gnumake
+    connman-gtk
     curl
     fzf
+    gcc
     git
+    gnumake
     htop
+    neofetch
     nnn
+    nodejs_22
     python3
     ripgrep
     tealdeer
     tree
+    unzip
     vimHugeX
     wget
   ];
@@ -196,4 +190,48 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
+
+  fileSystems."/media/kingston_usb" = { 
+    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_2.0_C8600088616CEF11AA19D52E-0:0-part1";
+    options = [ "nofail" ];
+  };
+
+  # Enable OpenGL
+  hardware.opengl.enable = true;
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = {
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # of just the bare essentials.
+    # powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    # powerManagement.finegrained = false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of 
+    # supported GPUs is at: 
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Only available from driver 515.43.04+
+    # Currently alpha-quality/buggy, so false is currently the recommended setting.
+    open = false;
+
+    # Enable the Nvidia settings menu,
+    # accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
+  
 }
+

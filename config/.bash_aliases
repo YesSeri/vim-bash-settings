@@ -173,26 +173,39 @@ function yy() {
 
 alias clip='tr --delete "\n" | xclip -sel clipboard'
 
-light(){
-	MIN=100
-	MAX=`cat /sys/class/backlight/intel_backlight/max_brightness`
-	VAL=$1
-	if [ "$#" -ne 1 ]; then
-		echo "Illegal number of parameters"
-		echo "Usage: light <$MIN - $MAX>"
-		return 1
-	fi
-	if [[ $* == *--help* ]]; then
-		echo "Usage: light <MIN - MAX>"
-		echo "MIN: $MIN"
-		echo "MAX: $MAX"
-		return 0
-	fi
-	if [[ $1 -lt $MIN ]]; then
-		VAL=$MIN
-	elif [[ $1 -gt $MAX ]]; then
-		VAL=$MAX
-	fi
-	sudo sh -c "echo $VAL > /sys/class/backlight/intel_backlight/brightness"
-	echo "brightness is $VAL, $(((VAL*100)/$MAX))%"
+light() {
+    MIN=100
+    # Find the longest backlight path within /sys/class/backlight
+    BACKLIGHT_PATH=$(find /sys/class/backlight/ | awk '{ print length, $0 | "sort -nr | head -1" }' | cut -d' ' -f2-)
+
+    if [ -z "$BACKLIGHT_PATH" ]; then
+        echo "Backlight path not found."
+        return 1
+    fi
+
+    MAX=$(cat "$BACKLIGHT_PATH/max_brightness")
+    VAL=$1
+
+    if [ "$#" -ne 1 ]; then
+        echo "Illegal number of parameters"
+        echo "Usage: light <$MIN - $MAX>"
+        return 1
+    fi
+
+    if [[ $* == *--help* ]]; then
+        echo "Usage: light <MIN - MAX>"
+        echo "MIN: $MIN"
+        echo "MAX: $MAX"
+        return 0
+    fi
+
+    if [[ $1 -lt $MIN ]]; then
+        VAL=$MIN
+    elif [[ $1 -gt $MAX ]]; then
+        VAL=$MAX
+    fi
+
+    sudo sh -c "echo $VAL > $BACKLIGHT_PATH/brightness"
+    echo "Brightness is $VAL, $(((VAL*100)/$MAX))%"
 }
+

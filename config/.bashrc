@@ -126,8 +126,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-. "$HOME/.cargo/env"
 eval "$(zoxide init bash)"
+eval "$(fzf --bash)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -163,7 +163,5 @@ setxkbmap -layout us,dk,se
 setxkbmap -option 'grp:alt_shift_toggle'
 
 alias syncwatch='watch -d grep -e Dirty: -e Writeback: /proc/meminfo'
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 export DENO_INSTALL="/home/henrik/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"

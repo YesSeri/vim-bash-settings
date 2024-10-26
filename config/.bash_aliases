@@ -1,32 +1,5 @@
-# Naming conventions
-# Environment variables or shell variables introduced by the operating system, shell startup scripts, or the shell itself, etc., are usually all in CAPITALS1.
-# To prevent your variables from conflicting with these variables, it is a good practice to use lower_case variable names.
-#
-# https://unix.stackexchange.com/questions/42847/are-there-naming-conventions-for-variables-in-shell-scripts
-#
-### snippet for sourcing .bash_aliases file if it exists.
-# Use this in ~/.bashrc to read file.
-# if [ -f ~/.bash_aliases ]; then
-#     . ~/.bash_aliases
-# fi
-#
-### copy bashrc and bash aliases command 
-#
-## this finds relevant files
-# fd --hidden "^.?bash(_aliases|rc)$" ~ 
-#
-## use this from inside vim with ctrl+x ctrl+e on cli
-# :r ! fd --hidden "^.?bash(_aliases|rc)$" ~ 
-#
-## the command should look like this kind of
-# cp /home/henrik/.bashrc /home/henrik/programming/docs/vim-bash-settings/linux/bashrc && cp /home/henrik/.bash_aliases /home/henrik/programming/docs/vim-bash-settings/linux/bash_aliases
-#
-## with bat config
-# cp /home/henrik/.bashrc /home/henrik/programming/docs/vim-bash-settings/linux/bashrc && cp /home/henrik/.bash_aliases /home/henrik/programming/docs/vim-bash-settings/linux/bash_aliases && cp /home/henrik/.config/bat/config /home/henrik/programming/docs/vim-bash-settings/linux/bat/config
-
 myuptime () {
 	uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
-	return;
 }
 
 
@@ -40,54 +13,10 @@ alias bright="sudo brightnessctl set"
 alias o="xdg-open"
 alias x="exit"
 
-alias tablet="python3 /home/henrik/programming/scripts/scale.py"
-alias brownnoise="/home/henrik/programming/vim-bash-settings/linux/scripts/brown_noise.sh"
-
 alias nnn="nnn -e" 
-# -e = edit in $EDITOR
-# -H = show hidden
-alias q="exit"
-alias buildgcc="gcc -Wall -g $1 -o a.out"
 alias ec="emacsclient -n"
-alias lc3="/home/henrik/Documents/t2/machine/LC_3_Simulator/LC3Tools-2.0.2.AppImage"
-
-createLatex() {
-	file=$1
-	filename="${file%.*}"
-	outdir="out-${filename}"
-	mkdir -p $outdir && pandoc $file --standalone --output $outdir/$filename.pdf #&& pdflatex -output-directory=$outdir $outdir/$filename.tex
-	#find $outdir | rg .*(aux|log)$ | xargs rm
-	find $outdir -type f -iname '*.pdf' | xargs xdg-open
-
-}
-
-
-
-upgradeAptApps() {
-	sudo apt update -y && sudo apt upgrade -y
-}
-
-install() {
-	sudo apt install $1
-}
 
 mkcd() { mkdir -p "$1" && cd "$1"; }
-
-alias glogall='git log --graph --full-history --all --color --oneline'
-alias ga='git add'
-alias gc='git commit'
-alias gpush='git push'
-alias gpull='git pull'
-
-# Full info and hidden files
-alias lah='ls -lah'
-
-alias cpscreenshot='cp "$(fd . ~/Pictures/Screenshots/ -a | tail -1)"'
-
-alias foxit='/home/henrik/.installedPrograms/foxitsoftware/foxitreader/FoxitReader.sh'
-
-
-
 
 history-no-lines() {
 history|awk '{$1="";print substr($0,2)}'
@@ -135,8 +64,6 @@ Tldr () {
 	eval $CUSTOMCMD
 }
 
-alias History="history-no-lines | tac | sortKeepOrder | fzf --height=50% --border"
-
 alias n="nvim"
 
 function kssh ()
@@ -150,7 +77,6 @@ function kssh ()
 function fman() {
     man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
 }
-export MANPAGER="sh -c 'col -bx | bat -l man -p --paging always'"
 
 function fv() {
 	rg --color=always --line-number --no-heading --smart-case "${*:-}" |
@@ -171,7 +97,7 @@ function yy() {
 	rm -f -- "$tmp"
 }
 
-alias clip='tr --delete "\n" | xclip -sel clipboard'
+alias clip='xclip -sel clipboard'
 
 light() {
     MIN=100

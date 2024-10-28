@@ -94,6 +94,7 @@
     ];
 
     packages = with pkgs; [
+      ftp
       calibre
       audacity
       nixfmt-rfc-style

@@ -5,23 +5,20 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ ./hardware-configuration.nix ./graphics-nvidia.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./graphics-nvidia.nix
+    ./mounter.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "nixos";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   services.connman.enable = true;
-  #networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
@@ -92,32 +89,52 @@
   users.users.henrik = {
     isNormalUser = true;
     description = "henrik";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      # "networkmanager"
+      "wheel"
+    ];
+
     packages = with pkgs; [
       audacity
+      nixfmt-rfc-style
+      eza
+      gh
+      bat
       bitwarden-desktop
+      connman-gtk
+      curl
       dropbox
       fd
+      fzf
+      gcc
+      gnumake
+      htop
       jq
       libreoffice-qt6-still
       mullvad
       mullvad-vpn
+      neofetch
       neovim
+      nnn
+      nodejs_22
       qbittorrent
+      ripgrep
       rustup
       sshfs
       steam
+      tealdeer
       tmux
+      vimHugeX
       vlc
-      zoxide
       xclip
+      zoxide
     ];
   };
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
   };
 
   # Enable automatic login for the user.
@@ -142,23 +159,10 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
-    bat
-    connman-gtk
-    curl
-    fzf
-    gcc
     git
-    gnumake
-    htop
-    neofetch
-    nnn
-    nodejs_22
     python3
-    ripgrep
-    tealdeer
     tree
     unzip
-    vimHugeX
     wget
   ];
 
@@ -187,15 +191,14 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 
-  fileSystems."/media/kingston_usb" = { 
-    device = "/dev/disk/by-id/usb-Kingston_DataTraveler_2.0_C8600088616CEF11AA19D52E-0:0-part1";
-    options = [ "nofail" ];
-  };
+  #fileSystems."/media/kingston_usb" = { 
+  #device = "/dev/disk/by-id/usb-Kingston_DataTraveler_2.0_C8600088616CEF11AA19D52E-0:0-part1";
+  #options = [ "defaults" "nofail"];
+  #};
 
   # source: https://github.com/NixOS/nixpkgs/blob/7eee17a8a5868ecf596bbb8c8beb527253ea8f4d/nixos/modules/system/activation/top-level.nix
   system.copySystemConfiguration = true;
-  
-}
 
+}

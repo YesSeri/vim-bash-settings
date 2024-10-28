@@ -100,7 +100,7 @@ function yy() {
 alias clip='xclip -sel clipboard'
 
 light() {
-    MIN=100
+    MIN=20
     # Find the longest backlight path within /sys/class/backlight
     BACKLIGHT_PATH=$(find /sys/class/backlight/ | awk '{ print length, $0 | "sort -nr | head -1" }' | cut -d' ' -f2-)
 

@@ -8,7 +8,6 @@
   imports = [
     ./hardware-configuration.nix
     ./graphics-nvidia.nix
-    ./mounter.nix
   ];
 
   # Bootloader.
@@ -96,17 +95,16 @@
 
     packages = with pkgs; [
       audacity
-      nixfmt-rfc-style
-      eza
-      gh
       bat
       bitwarden-desktop
       connman-gtk
       curl
       dropbox
+      eza
       fd
       fzf
       gcc
+      gh
       gnumake
       htop
       jq
@@ -115,6 +113,7 @@
       mullvad-vpn
       neofetch
       neovim
+      nixfmt-rfc-style
       nnn
       nodejs_22
       qbittorrent

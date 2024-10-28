@@ -67,6 +67,7 @@
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
+  sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -91,9 +92,11 @@
     extraGroups = [
       # "networkmanager"
       "wheel"
+      "audio"
     ];
 
     packages = with pkgs; [
+      pavucontrol
       inetutils
       calibre
       audacity
@@ -160,6 +163,7 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
+    pulseaudio # This provides pactl and related PulseAudio utilities
     git
     python3
     tree

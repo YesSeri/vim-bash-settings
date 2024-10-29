@@ -96,21 +96,25 @@
     ];
 
     packages = with pkgs; [
+      discord
       pavucontrol
       inetutils
       calibre
       audacity
-      nixfmt-rfc-style
-      eza
-      gh
       bat
+      eclipses.eclipse-sdk
       bitwarden-desktop
       connman-gtk
       curl
+      yt-dlp
       dropbox
+      eza
       fd
+      zathura
+      ffmpeg
       fzf
       gcc
+      gh
       gnumake
       htop
       jq
@@ -119,6 +123,7 @@
       mullvad-vpn
       neofetch
       neovim
+      nixfmt-rfc-style
       nnn
       nodejs_22
       qbittorrent
@@ -163,12 +168,12 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
-    pulseaudio # This provides pactl and related PulseAudio utilities
     git
     python3
     tree
     unzip
     wget
+    pulseaudio
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

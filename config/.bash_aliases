@@ -135,3 +135,6 @@ light() {
     echo "Brightness is $VAL, $(((VAL*100)/$MAX))%"
 }
 
+function nop() {
+	(nohup "$@" &> /dev/null &) &> /dev/null
+}

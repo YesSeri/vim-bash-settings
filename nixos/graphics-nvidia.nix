@@ -2,16 +2,17 @@
 
 # source: https://nixos.wiki/wiki/Nvidia
 {
-  hardware.opengl.enable = true;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   services.xserver.videoDrivers = [
     "nvidia"
     "amdgpu"
   ];
-  hardware.nvidia = {
-    # experimental
-    powerManagement.enable = true;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+  #hardware.opengl.enable = true;
+  #  hardware.nvidia = {
+  #    # experimental
+  #    powerManagement.enable = true;
+  #    open = false;
+  #    nvidiaSettings = true;
+  #    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #  };
 }

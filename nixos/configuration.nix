@@ -16,9 +16,6 @@
 
   networking.hostName = "nixos";
 
-  services.connman.enable = true;
-  # networking.networkmanager.enable = true;
-
   # Set your time zone.
   time.timeZone = "Europe/Copenhagen";
 
@@ -44,8 +41,8 @@
   services.xserver.xkb.variant = "";
   services.xserver.enable = true;
   services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3 = {
-    enable = true;
     extraPackages = with pkgs; [
       dmenu
       i3status
@@ -90,33 +87,33 @@
     isNormalUser = true;
     description = "henrik";
     extraGroups = [
-      # "networkmanager"
+      "vboxusers"
+      "networkmanager"
       "wheel"
       "audio"
     ];
 
     packages = with pkgs; [
-      discord
-      pavucontrol
-      inetutils
-      calibre
       audacity
       bat
-      eclipses.eclipse-sdk
       bitwarden-desktop
-      connman-gtk
+      calibre
       curl
-      yt-dlp
+      discord
       dropbox
+      eclipses.eclipse-sdk
       eza
       fd
-      zathura
       ffmpeg
       fzf
       gcc
       gh
       gnumake
       htop
+      inetutils
+      jetbrains.idea-ultimate
+      jetbrains.rust-rover
+      jetbrains.webstorm
       jq
       libreoffice-qt6-still
       mullvad
@@ -126,16 +123,23 @@
       nixfmt-rfc-style
       nnn
       nodejs_22
+      pavucontrol
       qbittorrent
       ripgrep
+      ripgrep-all
       rustup
       sshfs
       steam
       tealdeer
       tmux
+      unzip
       vimHugeX
       vlc
+      vscode
       xclip
+      yt-dlp
+      zathura
+      zip
       zoxide
     ];
   };
@@ -169,11 +173,10 @@
   environment.systemPackages = with pkgs; [
     alacritty
     git
+    pulseaudio
     python3
     tree
-    unzip
     wget
-    pulseaudio
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -211,4 +214,6 @@
   # source: https://github.com/NixOS/nixpkgs/blob/7eee17a8a5868ecf596bbb8c8beb527253ea8f4d/nixos/modules/system/activation/top-level.nix
   system.copySystemConfiguration = true;
 
+  networking.networkmanager.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 }

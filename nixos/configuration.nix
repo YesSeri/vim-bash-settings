@@ -111,11 +111,16 @@
       gnumake
       htop
       inetutils
+      jetbrains.clion
       jetbrains.idea-ultimate
+      jetbrains.pycharm-professional
       jetbrains.rust-rover
       jetbrains.webstorm
       jq
+      lazygit
       libreoffice-qt6-still
+      maestral
+      maim
       mullvad
       mullvad-vpn
       neofetch
@@ -136,6 +141,7 @@
       vimHugeX
       vlc
       vscode
+      watchexec
       xclip
       yt-dlp
       zathura
@@ -172,6 +178,7 @@
   };
   environment.systemPackages = with pkgs; [
     alacritty
+    emacs
     git
     pulseaudio
     python3

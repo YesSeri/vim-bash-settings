@@ -46,7 +46,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -221,6 +221,8 @@ for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Free Account
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
 for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Webinar"] floating disable
 
-bindsym --release $mod+Print exec gnome-screenshot -a
-bindsym --release Print exec gnome-screenshot -i
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym Print exec maim ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+bindsym Shift+Print exec maim -s ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
+#bindsym --release $mod+Print exec gnome-screenshot -a
+#bindsym --release Print exec gnome-screenshot -i
+#bindsym $mod+d exec --no-startup-id dmenu_run

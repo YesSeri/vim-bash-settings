@@ -1,6 +1,7 @@
 {
   description = "NixOS for henrikserver-slow-nixos";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+  inputs.hostmap.url = "github:YesSeri/hostmap";
 
 
   outputs = { self, nixpkgs }: {

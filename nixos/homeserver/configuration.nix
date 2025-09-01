@@ -30,17 +30,18 @@
     shell = pkgs.bash;
     hashedPassword = "$6$i4CeIlsCZ1tFGjPC$BODfLwkVQakTrGgFHlgvYyTZDPuKGJc20pFfho/KIyMbFuYmAnZkhM2zRBuh4XADufEZAoLTSZDbCWJ/9uqC31";
     packages = with pkgs; [
-      curl
-      openssl
       calibre
+      curl
       ffmpeg
       git
+      hostmap
+      openssl
+      python313
       tmux
       tree
       unzip
       wget
       zip
-      python313
     ];
   };
 

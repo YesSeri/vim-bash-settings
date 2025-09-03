@@ -64,7 +64,7 @@
 
   boot.loader.grub.devices = [ "/dev/sda" ];
   boot.loader.grub.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 8083 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 8083 ];
   # networking.firewall.allowedTCPPorts = [ 5001 8083 22 ];
   networking.hostName = "henrikserver-slow-nixos";
   networking.wireless.enable = false;
@@ -98,10 +98,9 @@
     enable = true;
     recommendedProxySettings = true;
     virtualHosts."hostmap" = {
-      listen = [{ addr = "0.0.0.0"; port = 5001; }];
+      listen = [{ addr = "0.0.0.0"; port = 80;}];
       locations."/" = {
         proxyPass = "http://127.0.0.1:3000";
-        proxyWebsockets = true;
       };
     };
   
@@ -111,6 +110,18 @@
         proxyPass = "http://127.0.0.1:8084";
         proxyWebsockets = true;
       };
+    };
+  };
+
+  systemd.services.hostmap = {
+    description = "hostmap maps nix store paths to git revisions";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.hostmap}/bin/hostmap";
+      Restart = "always";
+      User = "nobody";
     };
   };
 

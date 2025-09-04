@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -12,8 +15,8 @@
       port = 8084;
     };
     options = {
-      calibreLibrary       = "/srv/calibre/library";
-      enableBookUploading  = true;
+      calibreLibrary = "/srv/calibre/library";
+      enableBookUploading = true;
     };
   };
 
@@ -26,7 +29,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHiRCWw5NBxM1t6JzPUqQDYFblta+w/ojsi1ajGVyH6v"
     ];
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = ["wheel"];
     shell = pkgs.bash;
     hashedPassword = "$6$i4CeIlsCZ1tFGjPC$BODfLwkVQakTrGgFHlgvYyTZDPuKGJc20pFfho/KIyMbFuYmAnZkhM2zRBuh4XADufEZAoLTSZDbCWJ/9uqC31";
     packages = with pkgs; [
@@ -62,17 +65,16 @@
     vim
   ];
 
-  boot.loader.grub.devices = [ "/dev/sda" ];
+  boot.loader.grub.devices = ["/dev/sda"];
   boot.loader.grub.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 80 8083 ];
+  networking.firewall.allowedTCPPorts = [22 80 8083];
   # networking.firewall.allowedTCPPorts = [ 5001 8083 22 ];
   networking.hostName = "henrikserver-slow-nixos";
   networking.wireless.enable = false;
-  nixpkgs.config.allowUnfree = true;
   powerManagement.cpuFreqGovernor = "powersave";
   powerManagement.enable = true;
   services.avahi.enable = false;
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  networking.firewall.trustedInterfaces = ["tailscale0"];
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
@@ -82,15 +84,20 @@
   services.openssh.settings.PasswordAuthentication = true;
   services.pipewire.enable = false;
   services.printing.enable = false;
-  swapDevices = [ { device = "/swapfile"; size = 2048; } ];
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 2048;
+    }
+  ];
   system.stateVersion = "25.05";
   services.logind.extraConfig = ''
     HandleLidSwitch=ignore
   '';
   users.users.henrikserver.linger = true;
-  networking.firewall.allowedUDPPorts = [ 41641 ];
+  networking.firewall.allowedUDPPorts = [41641];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.settings.trusted-public-keys = [
     "my-cache:JPW4QZXdPrFc1DmRBC5mDknlWGgaxuBRwLKJ9iEzl+M="
   ];
@@ -98,14 +105,24 @@
     enable = true;
     recommendedProxySettings = true;
     virtualHosts."hostmap" = {
-      listen = [{ addr = "0.0.0.0"; port = 80;}];
+      listen = [
+        {
+          addr = "0.0.0.0";
+          port = 80;
+        }
+      ];
       locations."/" = {
         proxyPass = "http://127.0.0.1:3000";
       };
     };
-  
+
     virtualHosts."calibre" = {
-      listen = [{ addr = "0.0.0.0"; port = 8083; }];
+      listen = [
+        {
+          addr = "0.0.0.0";
+          port = 8083;
+        }
+      ];
       locations."/" = {
         proxyPass = "http://127.0.0.1:8084";
         proxyWebsockets = true;
@@ -115,14 +132,13 @@
 
   systemd.services.hostmap = {
     description = "hostmap maps nix store paths to git revisions";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" ];
-    wants = [ "network-online.target" ];
+    wantedBy = ["multi-user.target"];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
     serviceConfig = {
       ExecStart = "${pkgs.hostmap}/bin/hostmap";
       Restart = "always";
       User = "nobody";
     };
   };
-
 }

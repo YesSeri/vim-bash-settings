@@ -5,6 +5,7 @@
     ./user.nix
     ./modules/calibre.nix
     ./modules/nginx.nix
+    ./modules/networking.nix
   ];
 
   services.syncthing = {

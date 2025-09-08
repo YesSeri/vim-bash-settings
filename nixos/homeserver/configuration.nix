@@ -6,6 +6,7 @@
     ./modules/calibre.nix
     ./modules/nginx.nix
     ./modules/networking.nix
+    ./modules/activation.nix
   ];
 
   services.syncthing = {

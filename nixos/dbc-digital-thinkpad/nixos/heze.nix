@@ -10,7 +10,6 @@
         # direnv
         # discord
         # ffmpeg
-        # jq
         # lazygit
         # libreoffice-qt6-still
         # moonlight-qt
@@ -18,6 +17,11 @@
         # strawberry
         # vscode
         # yt-dlp
+	jq
+	jujutsu
+	nix-tree
+	rust-analyzer
+	sshfs
         bat
         bitwarden-desktop
         brightnessctl
@@ -34,6 +38,7 @@
         pcmanfm
         ripgrep
         ripgrep-all
+        rust-analyzer
         rustup
         slack
         tealdeer
@@ -47,9 +52,7 @@
         zathura
         zip
         zoxide
-        rust-analyzer
-	sshfs
-	jujutsu
     ];
+
   };
 }

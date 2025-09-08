@@ -8,7 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./gnome.nix
+       # ./gnome.nix
+      # ../../modules/xserver.nix
+# ./kde-plasma.nix
+      ./niri.nix
       ./heze.nix
       ./nvidia.nix
     ];
@@ -94,8 +97,15 @@
    pulseaudio
    python3
    tree
+   gnupg
    wget
   ];
+  programs.gnupg.agent = {
+    enable = true;
+    # pinentryPackage = "curses";  # or "gtk2", "qt", etc
+    pinentryPackage = pkgs.pinentry-curses;  # or pkgs.pinentry-qt, -gnome3, etc.
+    enableSSHSupport = true;    # if you want SSH key support
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

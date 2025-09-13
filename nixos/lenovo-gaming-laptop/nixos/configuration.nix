@@ -9,9 +9,9 @@
   imports = [
     ./hardware-configuration.nix
     ./graphics-nvidia.nix
-    ./modules/maintenance.nix
-    ./modules/xserver.nix
-    ./modules/henrik.nix
+    ../../modules/maintenance.nix
+    ../../modules/xserver.nix
+    ../../modules/henrik.nix
   ];
 
   boot.loader.systemd-boot.enable = true;

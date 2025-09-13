@@ -8,10 +8,11 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-       # ./gnome.nix
-      # ../../modules/xserver.nix
+       ../../modules/fonts.nix
 # ./kde-plasma.nix
+       # ./gnome.nix
       ./niri.nix
+      ./openvpn.nix
       ./heze.nix
       ./nvidia.nix
     ];
@@ -92,6 +93,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
    alacritty
+   openvpn
    emacs
    git
    pulseaudio

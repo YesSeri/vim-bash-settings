@@ -52,6 +52,7 @@
         zathura
         zip
         zoxide
+	pavucontrol
     ];
 
   };

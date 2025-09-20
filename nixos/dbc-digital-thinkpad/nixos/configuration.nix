@@ -3,14 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
        ../../modules/fonts.nix
-# ./kde-plasma.nix
-       # ./gnome.nix
+       ../../modules/steam.nix
+      ./gnome.nix
       ./niri.nix
       ./openvpn.nix
       ./heze.nix
@@ -151,13 +150,14 @@
   };
 
   boot.kernelModules = [ "i915" ];
-
-
 #   networking.resolvconf.enable = true;
 #   services.openvpn.servers.linux = {
 #     autoStart = false;
 #     config = builtins.readFile /home/heze/vpn/exheze/linux.ovpn;
 #     updateResolvConf = true;
 #   };
+  environment.etc."environment.d/10-wayland.conf".text = ''
+    NIXOS_OZONE_WL=1
+  '';
 
 }

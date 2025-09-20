@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
+let 
+  user = "heze";
+in
 {
-  users.users.heze = {
+  users.users."${user}" = {
     isNormalUser = true;
     description = "Henrik Zenkert";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -53,7 +56,13 @@
         zip
         zoxide
 	pavucontrol
+	direnv
+	bruno
     ];
 
   };
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
 }
+

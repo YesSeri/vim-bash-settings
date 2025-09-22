@@ -46,6 +46,7 @@ in
 	pavucontrol
 	direnv
 	bruno
+	vscode-fhs
     ];
 
   };

@@ -5,10 +5,16 @@ output "eDP-1" {
     scale 1.4
     mode "2560x1600@165.004"
 }
+/*
+Generate work/home config with the following command:
+    cat ~/.config/niri/template/{home,config-template}.kdl > ~/.config/niri/config.kdl
+    cat ~/.config/niri/template/{work,config-template}.kdl > ~/.config/niri/config.kdl
+*/
 input {
     focus-follows-mouse
     keyboard {
         xkb {
+            layout "us,dk"
             options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
         }
         numlock
@@ -146,18 +152,18 @@ binds {
     Mod+Page_Up        { focus-workspace-up; }
     Mod+U              { focus-workspace-down; }
     Mod+I              { focus-workspace-up; }
-    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-    Mod+Ctrl+U         { move-column-to-workspace-down; }
-    Mod+Ctrl+I         { move-column-to-workspace-up; }
+    Mod+Ctrl+Page_Down { move-column-to-workspace-down focus=false; }
+    Mod+Ctrl+Page_Up   { move-column-to-workspace-up focus=false; }
+    Mod+Ctrl+U         { move-column-to-workspace-down focus=false; }
+    Mod+Ctrl+I         { move-column-to-workspace-up focus=false; }
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+U         { move-workspace-down; }
     Mod+Shift+I         { move-workspace-up; }
     Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down focus=false; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up focus=false; }
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
     Mod+Ctrl+WheelScrollRight { move-column-right; }

@@ -1,10 +1,8 @@
-output "ASUSTek COMPUTER INC ASUS VG249Q1A 0x00007874" {
-    mode "2560x1440@59.951"
-}
-output "eDP-1" {
-    scale 1.4
-    mode "2560x1600@165.004"
-}
+/*
+Generate work/home config with the following command:
+    cat ~/.config/niri/template/{home,config-template}.kdl > ~/.config/niri/config.kdl
+    cat ~/.config/niri/template/{work,config-template}.kdl > ~/.config/niri/config.kdl
+*/
 input {
     focus-follows-mouse
     keyboard {

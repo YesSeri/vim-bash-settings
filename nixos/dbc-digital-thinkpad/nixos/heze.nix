@@ -9,17 +9,6 @@ in
     description = "Henrik Zenkert";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-        # audacity
-        # direnv
-        # discord
-        # ffmpeg
-        # lazygit
-        # libreoffice-qt6-still
-        # moonlight-qt
-        # neovide
-        # strawberry
-        # vscode
-        # yt-dlp
 	jq
 	jujutsu
 	nix-tree
@@ -49,7 +38,6 @@ in
         unzip
         vimHugeX
         vlc
-        vscode-fhs
         watchexec
         xclip
         zathura
@@ -61,8 +49,8 @@ in
     ];
 
   };
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  # programs.direnv.enable = true;
+  # programs.direnv.nix-direnv.enable = true;
 
 }
 

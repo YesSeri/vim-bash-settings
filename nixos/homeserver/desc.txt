@@ -1,0 +1,10 @@
+# Traceable Server States with Git and Nix
+
+DBC Digital operates a fleet of servers specified, built, and deployed
+using Nix expressions stored in a Git repository.
+To ensure consistency, they require monitoring of build provenance and the current system state, so each server matches its intended configuration with only expected differences. 
+Currently, DBC Digital records mappings from Nix store paths to Git commits in a CSV file, and uses a PHP script to query servers and display their nix store path and git revision mapping. While this provides some traceability, the approach is limited in performance, usability, and integration.
+The current PHP-based approach is slow, offers limited interactivity, requires SSH access to all servers (a security risk), and integrates poorly with existing systems.
+This project will build a secure, integrated system for monitoring and maintaining mappings between Nix store paths and Git revisions, including historical changes, across a fleet of servers.
+At a minimum, the system should match the PHP script's functionality, while offering improved security and performance. Stretch goals include making the tool easy to deploy in a plug-and-play manner, ensuring it is user-friendly and well-documented as an open-source project, and further enhancing usability.
+

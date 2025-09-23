@@ -15,6 +15,10 @@ in
   henriksserver = { ... }: {
     deployment.targetHost = "192.168.50.167";  
     deployment.targetUser = "root";
+	deployment.secrets."secret-stuff" = {
+	    source = "secret.txt";
+	    destination = "/home/henrikserver/secret.txt";
+	};
 
     imports = [
       ./hardware-configuration.nix

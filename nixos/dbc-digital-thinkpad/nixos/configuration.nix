@@ -3,13 +3,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-       ../../modules/fonts.nix
+      ./fonts.nix
        ../../modules/steam.nix
       ./gnome.nix
       ./niri.nix
       ./openvpn.nix
       ./heze.nix
       ./nvidia.nix
+      # ./sway.nix
     ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -46,17 +47,18 @@
   programs.firefox.enable = true;
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-   alacritty
-   bibata-cursors
-   openvpn
-   emacs
-   git
-   pulseaudio
-   python3
-   tree
-   gnupg
-   wget
+    alacritty
+    bibata-cursors
+    openvpn
+    emacs
+    git
+    pulseaudio
+    python3
+    tree
+    gnupg
+    wget
   ];
+
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-curses; 
@@ -75,9 +77,21 @@
     ];
     experimental-features = [ "nix-command" "flakes" ];
   };
-  boot.kernelModules = [ "i915" ];
   environment.variables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
+  } // { 
+    OPENSSL_DIR = "${pkgs.openssl.dev}";
+    OPENSSL_LIB_DIR = "${pkgs.openssl.out}/lib";
+    OPENSSL_INCLUDE_DIR = "${pkgs.openssl.dev}/include";
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
+  # boot.blacklistedKernelModules = [ "ucsi_acpi" "typec_ucsi" ];
+  boot.kernelModules = [
+    "typec"
+    "typec_ucsi"
+    "usb_power_delivery"
+    "i915" 
+  ];
+
 }

@@ -4,11 +4,11 @@ Generate work/home config with the following command:
     cat ~/.config/niri/template/{work,config-template}.kdl > ~/.config/niri/config.kdl
 */
 input {
-    focus-follows-mouse
     keyboard {
         xkb {
             layout "us,dk"
-            options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            options "grp:alt_shift_toggle,compose:ralt,ctrl:nocaps"
+	    
         }
         numlock
     }
@@ -32,24 +32,12 @@ output "eDP-1" {
     scale 1.4
     mode "2560x1600@165.004"
 }
-/*
-output "eDP-1" {
-    position x=1920 y=0
-    position x=0 y=0
-    mode "2560x1600@165.004"
-    scale 1.4
-}
-output "Dell Inc. DELL U2520D J1NJ923" {
-    position x=1280 y=0
-    mode "2560x1440@59.951"
-    scale 1
-}
-*/
 layout {
     gaps 1
     center-focused-column "never"
     preset-column-widths {
         proportion 0.33333
+        proportion 0.5
         proportion 0.66667
     }
     default-column-width { proportion 0.5; }
@@ -86,13 +74,7 @@ window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
-/-window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^org\.gnome\.World\.Secrets$"#
-    block-out-from "screen-capture"
-}
-window-rule {
-}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
     Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
@@ -210,14 +192,15 @@ binds {
     Ctrl+Alt+Delete { quit; }
     Mod+Shift+P { power-off-monitors; }
     Mod+Shift+W { spawn "sh" "-c" "pkill -xf 'waybar' || waybar &> /dev/null  &" ; }
-    Mod+G {
-    spawn "sh" "-c" "niri msg action set-column-width 66.666% && niri msg action focus-column-right && niri msg action set-column-width 33.333% && niri msg action focus-column-left"
-  }
+    Mod+G { spawn "sh" "-c" "niri msg action set-column-width 66.666% && niri msg action focus-column-right && niri msg action set-column-width 33.333% && niri msg action focus-column-left" ; }
+    Mod+Space repeat=false { toggle-overview; }
 }
 window-rule {
-    open-maximized true
+    match app-id="firefox"
+    default-column-width { proportion 0.66667; }
 }
-window-rule {
-    match app-id="Alacritty"
-    open-maximized false
+gestures {
+	hot-corners {
+		off
+	}
 }

@@ -9,10 +9,10 @@ in
     description = "Henrik Zenkert";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
+        # jetbrains.rust-rover
 	jq
 	jujutsu
 	nix-tree
-	rust-analyzer
 	sshfs
         bat
         bitwarden-desktop
@@ -30,8 +30,6 @@ in
         pcmanfm
         ripgrep
         ripgrep-all
-        rust-analyzer
-        rustup
         slack
         tealdeer
         tmux
@@ -47,11 +45,8 @@ in
 	direnv
 	bruno
 	vscode-fhs
-    ];
-
+	teams-for-linux
+    ]; 
   };
-  # programs.direnv.enable = true;
-  # programs.direnv.nix-direnv.enable = true;
-
 }
 

@@ -1,0 +1,8 @@
+output "Seiko Epson Corporation EPSON PJ 0x01010101" {
+    mode "1920x1200"
+    scale 1
+}
+output "eDP-1" {
+    mode "2560x1600@165.004"
+    scale 1.4
+}

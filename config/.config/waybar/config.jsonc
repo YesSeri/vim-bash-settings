@@ -1,0 +1,80 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "exclusive": true,
+    "modules-left": [ "niri/workspaces","niri/window"],
+  "modules-center": ["clock"],
+  "modules-right": [ "pulseaudio", "network", "battery", "cpu", "memory" ],
+  "clock": { "format": "{:%a %Y-%m-%d  %H:%M}" },
+  "pulseaudio": {
+    "format": "{volume}%  ",
+    "format-muted": "muted  ",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -2%"
+  },
+  "network": {
+    "format-wifi": "{essid} {signalStrength}%",
+    "format-ethernet": "eth {ifname}",
+    "format-disconnected": "disconnected",
+    "tooltip": true
+  },
+  "battery": {
+    "states": { "warning": 20, "critical": 10 },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% ",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-icons": ["","","","",""]
+  },
+  "cpu": { "interval": 3, "format": "cpu {usage}%" },
+  "memory": { "interval": 5, "format": "{used:0.1f}G" },
+  "wlr/taskbar": {
+    "tooltip-format": "{title} | {app_id}"
+  },
+  "sway/workspaces": {
+	"format": "{name}: {icon}",
+	"format-icons": {
+		"1": "",
+		"2": "",
+		"3": "",
+		"4": "",
+		"5": "",
+		"high-priority-named": [ "1", "2" ],
+		"urgent": "",
+		"focused": "",
+		"default": ""
+	}
+  },
+   "niri/workspaces": {
+    "all-outputs": false,
+    "format": "{icon}",
+    "format-icons": {
+      "focused": ""
+    },
+    "disable-click": false
+  },
+
+  "niri/window": {
+    "format": "{title}",
+    "rewrite": {
+      "(.*)Mozilla Firefox$": "🌐 $1",
+      ".*: (.*)": "$1"
+    },
+    "max-length": 30,
+    "ellipsis": "…"
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "all-outputs": false,
+    "icon-size": 20,
+    "active-first": true
+  }
+}
+
+

@@ -66,25 +66,16 @@
   font-family: sans-serif, monospace, "FiraCode Nerd Font";
   font-size: 16px;   
 }
-.horizontal.modules-left, .horizontal.modules-left * {
+
+.horizontal.modules-left {
   margin: 0;
   padding: 0;
-}
-.horizontal.modules-left>*:last-child>* {
   margin-left: 8px;
 }
-.horizontal.modules-left>*:first-child {
+.horizontal.modules-left * {
   margin: 0;
   padding: 0;
-}
-.horizontal.modules-left>*:first-child>*>* {
-  margin: 0;
-  padding: 0;
-}
-.horizontal.modules-left>*:first-child>*>*.focused {
-  margin: 0;
-  padding: 0 16px;
-  border: solid 1px gray;
+  margin-right: 8px;
 }
 
 

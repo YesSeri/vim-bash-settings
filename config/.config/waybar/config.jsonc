@@ -3,10 +3,36 @@
   "position": "top",
   "height": 28,
   "exclusive": true,
-    "modules-left": [ "niri/workspaces","niri/window"],
+  "modules-left": [ "niri/workspaces","niri/window"],
   "modules-center": ["clock"],
   "modules-right": [ "pulseaudio", "network", "battery", "cpu", "memory" ],
-  "clock": { "format": "{:%a %Y-%m-%d  %H:%M}" },
+  "clock": {
+	"format-alt": "{:%a %Y-%m-%d  %H:%M}",
+	"format": "{:%a %Y-%m-%d  %H:%M}",
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode"          : "year",
+		"mode-mon-col"  : 3,
+		"weeks-pos"     : "right",
+		"on-scroll"     : 1,
+		"on-click-right": "mode",
+		"format": {
+			"months":     "<span color='#ffead3'><b>{}</b></span>",
+			"days":       "<span color='#c6d9ec'><b>{}</b></span>",
+			"weeks":      "<span color='#70ddff'><b>W{}</b></span>",
+			"weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+			"today":      "<span color='#ff5577'><b><u>{}</u></b></span>"
+		}
+	},
+	"actions": {
+		"on-click-right": "mode",
+		"on-click-forward": "tz_up",
+		"on-click-backward": "tz_down",
+		"on-scroll-up": "shift_up",
+		"on-scroll-down": "shift_down"
+	}
+  },
+  
   "pulseaudio": {
     "format": "{volume}%  ",
     "format-muted": "muted  ",
@@ -32,20 +58,6 @@
   "memory": { "interval": 5, "format": "{used:0.1f}G" },
   "wlr/taskbar": {
     "tooltip-format": "{title} | {app_id}"
-  },
-  "sway/workspaces": {
-	"format": "{name}: {icon}",
-	"format-icons": {
-		"1": "",
-		"2": "",
-		"3": "",
-		"4": "",
-		"5": "",
-		"high-priority-named": [ "1", "2" ],
-		"urgent": "",
-		"focused": "",
-		"default": ""
-	}
   },
    "niri/workspaces": {
     "all-outputs": false,

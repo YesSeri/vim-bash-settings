@@ -46,6 +46,7 @@ in
 	bruno
 	vscode-fhs
 	teams-for-linux
+	zed-editor
     ]; 
   };
 }

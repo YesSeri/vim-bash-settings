@@ -10,7 +10,7 @@
       ./openvpn.nix
       ./heze.nix
       ./nvidia.nix
-      # ./sway.nix
+      ./activation-logger.nix
     ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -58,6 +58,7 @@
     gnupg
     wget
   ];
+  services.tailscale.enable = true;
 
   programs.gnupg.agent = {
     enable = true;

@@ -4,10 +4,12 @@ let
   user = "heze";
 in
 {
+  virtualisation.docker.enable = true;
+
   users.users."${user}" = {
     isNormalUser = true;
     description = "Henrik Zenkert";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [
         # jetbrains.rust-rover
 	jq
@@ -47,6 +49,7 @@ in
 	vscode-fhs
 	teams-for-linux
 	zed-editor
+	dbeaver-bin
     ]; 
   };
 }

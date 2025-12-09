@@ -10,7 +10,8 @@
       ./openvpn.nix
       ./heze.nix
       ./nvidia.nix
-      ./activation-logger.nix
+      #./activation-logger.nix
+      #./libvirt.nix
     ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

@@ -4,6 +4,11 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
+#!# Custom: 
+#!# High priority bindings
+
+exec --no-startup-id setxkbmap -layout us,dk,se
+exec --no-startup-id setxkbmap -option grp:alt_shift_toggle
 
 # i3 config file (v4)
 #
@@ -189,12 +194,6 @@ bar {
 }
 
 
-bindsym Control+$alt+t exec kitty
-# Custom windows
-# xprop finds class name
-# assign [class="firefox"] $ws2
-# assign [class="code"] $ws1
-
 bindsym $mod+Shift+Up exec --no-startup-id sudo brightnessctl set +5%
 bindsym $mod+Shift+Down exec --no-startup-id sudo brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +10%
@@ -215,14 +214,10 @@ bindsym $mod+x mode "exit: [l]ogout, [r]eboot, [s]hutdown"
 focus_follows_mouse no
 
 bindsym $mod+p move workspace to output right
-for_window [class="(.*join\?action\=join.*|.*zoom.*)"] floating enable
-for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Licensed Account"] floating disable
-for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom - Free Account"] floating disable
-for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Meeting"] floating disable
-for_window [class="(.*join\?action\=join.*|.*zoom.*)" title="Zoom Webinar"] floating disable
 
 bindsym Print exec maim ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
 bindsym Shift+Print exec maim -s ~/Pictures/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png
 #bindsym --release $mod+Print exec gnome-screenshot -a
 #bindsym --release Print exec gnome-screenshot -i
-#bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
+

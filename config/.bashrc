@@ -3,23 +3,17 @@
 # for examples
 
 # Things that are specific for the current computer. Not in config git repo.
-if [ -f "$HOME/.bash_custom" ] ; then
-	. "$HOME/.bash_custom"
-fi
+[ -f "$HOME/.bash_custom" ] && . "$HOME/.bash_custom"
 # Temp stuff thatr. 
 # E.g if I want to always cd into a certain directory on starting bash
 # Not in config git repo.
-if [ -f "$HOME/.bash_custom_temp" ] ; then
-	. "$HOME/.bash_custom_temp"
-fi
+[ -f "$HOME/.bash_custom_temp" ] && . "$HOME/.bash_custom_temp"
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
+[ -f ~/.bash_aliases ] && . ~/.bash_aliases
 
 # If not running interactively, don't do anything
 case $- in
@@ -30,21 +24,18 @@ esac
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=20000
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -103,18 +94,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -AlFh'
-alias lf='fd --maxdepth 1 --type f --absolute-path'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -126,42 +108,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-eval "$(zoxide init bash)"
-eval "$(fzf --bash)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-[ -f "/home/henrik/.ghcup/env" ] && source "/home/henrik/.ghcup/env" # ghcup-env
-# Created by `userpath` on 2023-02-16 12:12:52
-
-# Exported variables
-export EDITOR=nvim
-
-shopt -s histappend
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-
-export TERMINAL=gnome-terminal
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-#export BORG_REPO="/home/henrik/.borg-backup"
-#export BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK=yes
-alias lg="lazygit"
+eval "$(zoxide init bash)"
+eval "$(fzf --bash)"
 
+export EDITOR=nvim
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.config/emacs/bin:$PATH"
+
+
 export NNN_COLORS='1234'
 
-run_detached() {
-    nohup "$@" </dev/null >/dev/null 2>&1 &
-    disown
-}
-
-setxkbmap -layout us,dk,se
-setxkbmap -option 'grp:alt_shift_toggle'
-
-alias syncwatch='watch -d grep -e Dirty: -e Writeback: /proc/meminfo'
-export DENO_INSTALL="/home/henrik/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"

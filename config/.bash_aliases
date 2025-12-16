@@ -19,8 +19,9 @@ alias ec="emacsclient -n"
 mkcd() { mkdir -p "$1" && cd "$1"; }
 
 history-no-lines() {
-history|awk '{$1="";print substr($0,2)}'
+  history | awk '{$1="";print substr($0,2)}'
 }
+
 alias pretty-path="echo $PATH | sed 's/\:/\n/g'"
 
 
@@ -66,14 +67,6 @@ Tldr () {
 
 alias n="nvim"
 
-function kssh ()
-{
-	if [[ "$TERM" == "xterm-kitty" ]]; then
-		kitten ssh "$@" 
-	else
-		ssh "$@"
-	fi
-}
 function fman() {
     man -k . | fzf -q "$1" --prompt='man> '  --preview $'echo {} | tr -d \'()\' | awk \'{printf "%s ", $2} {print $1}\' | xargs -r man | col -bx | bat -l man -p --color always' | tr -d '()' | awk '{printf "%s ", $2} {print $1}' | xargs -r man
 }
@@ -87,14 +80,6 @@ function fv() {
 	      --preview 'bat --color=always {1} --highlight-line {2}' \
 	      --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
 	      --bind 'enter:become(vim {1} +{2})'
-}
-function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
 }
 
 alias clip='xclip -sel clipboard'
@@ -135,6 +120,18 @@ light() {
     echo "Brightness is $VAL, $(((VAL*100)/$MAX))%"
 }
 
-function nop() {
-	(nohup "$@" &> /dev/null &) &> /dev/null
+function shush() {
+	nohup "$@" &> /dev/null &
 }
+
+alias syncwatch='watch -d grep -e Dirty: -e Writeback: /proc/meminfo'
+alias lg="lazygit"
+
+l() {
+  if command -v eza >/dev/null 2>&1; then
+    eza -lah --group-directories-first --git "$@"
+  else
+    ls -lah --group-directories-first --color=auto "$@"
+  fi
+}
+

@@ -86,4 +86,8 @@
   environment.variables = {
     EDITOR = "vim";
   };
+  users.users.henrik = {
+    extraGroups = [ "dialout" ];
+  };
+
 }

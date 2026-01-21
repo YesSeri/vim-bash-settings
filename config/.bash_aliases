@@ -135,3 +135,54 @@ l() {
   fi
 }
 
+_ydlp_require() {
+  for cmd in "$@"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "Error: $cmd is not installed or not in PATH." >&2
+      return 127
+    fi
+  done
+}
+
+
+yt-dlp-album() {
+
+  _ydlp_require yt-dlp ffmpeg deno || return $?
+
+  yt-dlp \
+	  --extract-audio \
+	  --audio-format mp3 \
+	  --audio-quality 0 \
+	  --output "%(playlist_index)02d - %(title).200B.%(ext)s" \
+	  --output-na-placeholder "NA" \
+	  --restrict-filenames \
+	  --windows-filenames \
+	  --no-overwrites \
+	  --embed-metadata \
+	  --embed-thumbnail \
+	  --convert-thumbnails jpg \
+	  --ppa "ffmpeg:-id3v2_version 3" \
+	  --yes-playlist  --output "%(playlist_title).200B/%(playlist_index)02d - %(title).200B.%(ext)s" \
+	  --playlist-start 1     "$@" \
+	  --js-runtimes "deno:$HOME/.deno/bin/deno" 
+}
+
+yt-dlp-song() {
+  _ydlp_require yt-dlp ffmpeg deno || return $?
+
+  yt-dlp \
+    --extract-audio \
+    --audio-format mp3 \
+    --audio-quality 0 \
+    --output "%(title).200B.%(ext)s" \
+    --restrict-filenames \
+    --windows-filenames \
+    --no-overwrites \
+    --embed-metadata \
+    --embed-thumbnail \
+    --convert-thumbnails jpg \
+    --ppa "ffmpeg:-id3v2_version 3" \
+	--js-runtimes "deno:$HOME/.deno/bin/deno" 
+    "$@"
+}
+

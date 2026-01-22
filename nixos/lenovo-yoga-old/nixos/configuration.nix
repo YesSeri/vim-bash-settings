@@ -12,6 +12,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+	./qemu.nix
   ];
 
   # Bootloader.
@@ -67,7 +68,7 @@
   #services.xserver.desktopManager.gnome.enable = true;
   services.printing.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   services.pipewire = {
     enable = true;
@@ -97,7 +98,7 @@
       eza
       fd
       ffmpeg
-      fzf
+      # fzf
       # gcc
       # gnumake
       htop
@@ -121,7 +122,7 @@
       tmux
       unzip
       lighttpd
-      vimHugeX
+      vim-full
       vlc
       vscode
       watchexec
@@ -133,12 +134,12 @@
       zoxide
     ];
   };
-  # programs.steam = {
-  #   enable = true;
-  #   remotePlay.openFirewall = true;
-  #   dedicatedServer.openFirewall = true;
-  #   localNetworkGameTransfers.openFirewall = true;
-  # };
+  programs.steam = {
+    enable = true;
+    # remotePlay.openFirewall = true;
+    # dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "henrik";
@@ -177,9 +178,9 @@
   ];
 
   # laptop key events
-  services.acpid.enable = true;
-  services.openssh.enable = false;
-  services.openssh.settings.PasswordAuthentication = false;
+  #services.acpid.enable = true;
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -197,7 +198,6 @@
 
 
   networking.networkmanager.enable = true;
-  virtualisation.virtualbox.host.enable = true;
   boot.supportedFilesystems = [ "ntfs" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

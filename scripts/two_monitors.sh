@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Lenovo (primary) on the left, ASUS on the right.
+# Without the ASUS, any other connected screen goes on the right.
+. "$(dirname "$(readlink -f "$0")")/monitors-lib.sh"
 
-PRIMARY_MONITOR=$(xrandr --query | grep " connected" | grep "DP-" | awk '{print $1}' | head -n 1)
-SECONDARY_MONITOR="HDMI-0"
+main=$(main_monitor)
+second=$(monitor_named "$SECOND")
+[[ -z $second || $second == "$main" ]] && second=$(any_except "$main")
 
-if [ -z "$PRIMARY_MONITOR" ]; then
-    echo "No DisplayPort monitor found. Exiting."
-    exit 1
-fi
-
-xrandr --output "$SECONDARY_MONITOR" --mode 1360x768 --pos 0x0 --rotate normal --output "$PRIMARY_MONITOR" --mode 1920x1080 --pos 1360x0 --rotate normal --left-of "$SECONDARY_MONITOR"
+use "$main" 1920x1080 --primary
+[[ -n $second ]] && use "$second" 1920x1080 --right-of "$main"
+apply

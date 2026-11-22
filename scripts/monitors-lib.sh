@@ -9,8 +9,8 @@
 #                      -l, --list      show connected monitors and their names
 
 # Part of the monitor names (any case; see --list). Override in the environment.
-MAIN=${MAIN:-T24i}        # Lenovo T24i-30: primary, on the left
-SECOND=${SECOND:-VG249}   # ASUS VG249Q1A: on the right
+MAIN=${MAIN:-T24i}        # Lenovo T24i-30: primary, on the right
+SECOND=${SECOND:-VG249}   # ASUS VG249Q1A: on the left
 TV=${TV:-}                # empty: the TV is any screen that is neither of the above
 
 die() { echo "$(basename "$0"): $*" >&2; exit 1; }

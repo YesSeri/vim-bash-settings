@@ -6,13 +6,14 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
-	./qemu.nix
+    ./qemu.nix
   ];
 
   # Bootloader.
@@ -90,27 +91,17 @@
     ];
 
     packages = with pkgs; [
-      audacity
       bat
       bitwarden-desktop
       curl
-    openfortivpn 
-	ppp
-      # evince
       eza
       fd
       ffmpeg
-      # fzf
-      # gcc
-      # gnumake
       htop
       inetutils
       jq
-	  moonlight-qt
       lazygit
       libreoffice-fresh
-      mullvad
-      mullvad-vpn
       neovim
       nixfmt
       nnn
@@ -120,27 +111,41 @@
       ripgrep
       ripgrep-all
       rustup
-      # steam
       tealdeer
       tmux
       unzip
-      lighttpd
       vim-full
       vlc
       vscode
       watchexec
+      inputs.workmux.packages.${pkgs.stdenv.hostPlatform.system}.default
       xclip
       yt-dlp
       zathura
       zip
-      sshfs
       zoxide
+
+      btop
+      claude-code
+      codex
+      direnv
+      dust
+      fzf
+      gh
+      hyperfine
+      nix-output-monitor
+      nvd
+      shellcheck
+      tokei
+      uv
     ];
+  };
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
   programs.steam = {
     enable = true;
-    # remotePlay.openFirewall = true;
-    # dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
   };
 
@@ -154,10 +159,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.sessionVariables = {
-    TERM = "alacritty";
     EDITOR = "vim";
     VISUAL = "vim";
     PAGER = "bat";
@@ -169,12 +171,8 @@
 
   environment.systemPackages = with pkgs; [
     alacritty
-	freerdp
-    acpid
-    # alsa-utils
-    emacs
+    freerdp
     git
-    pulseaudio
     brightnessctl
     python3
     tree
@@ -182,9 +180,6 @@
   ];
 
   # laptop key events
-  #services.acpid.enable = true;
-  services.openssh.enable = true;
-  services.openssh.settings.PasswordAuthentication = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -200,11 +195,32 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05";
 
-
+  zramSwap = {
+    enable = true;
+    algorithm = "lz4";
+    memoryPercent = 50;
+  };
   networking.networkmanager.enable = true;
   boot.supportedFilesystems = [ "ntfs" ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-   services.resolved.enable = true;
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+      max-jobs = "auto";
+    };
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
+
+  boot.loader.systemd-boot.configurationLimit = 10;
+  services.resolved.enable = true;
   networking.useHostResolvConf = false;
 
 }

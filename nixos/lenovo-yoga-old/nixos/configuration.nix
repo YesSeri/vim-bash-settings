@@ -40,6 +40,10 @@
     LC_TIME = "da_DK.UTF-8";
   };
 
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = true;
+  };
   # UI
   environment.pathsToLink = [ "/libexec" ];
 
@@ -78,6 +82,16 @@
   };
 
   security.rtkit.enable = true;
+  services.tailscale.enable = true;
+
+  nix.settings.extra-substituters = [
+    "https://cache.numtide.com"
+  ];
+  
+  nix.settings.extra-trusted-public-keys = [
+    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+  ];
+
   users.users.henrik = {
     isNormalUser = true;
     hashedPassword = "$6$qs7X8fwSnwe9U82U$qfnbpeB9MJ.Fa0FuS65VsUM13fdNkgdL39DJUh5fzwcziixng4u8HfqPVS1iTtDvNvyhQFaODkTbAx3GesLrE0";
@@ -88,6 +102,7 @@
       "wheel"
       "audio"
       "video"
+      "docker"
     ];
 
     packages = with pkgs; [
@@ -126,8 +141,8 @@
       zoxide
 
       btop
-      claude-code
-      codex
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.codex
+      inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
       direnv
       dust
       fzf
@@ -143,6 +158,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    enableBashIntegration = true;
   };
   programs.steam = {
     enable = true;

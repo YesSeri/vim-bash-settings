@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     workmux.url = "github:raine/workmux";
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =

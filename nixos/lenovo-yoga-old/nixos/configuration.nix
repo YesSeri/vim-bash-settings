@@ -108,11 +108,11 @@
       jq
 	  moonlight-qt
       lazygit
-      libreoffice-qt6-still
+      libreoffice-fresh
       mullvad
       mullvad-vpn
       neovim
-      nixfmt-rfc-style
+      nixfmt
       nnn
       nodejs_22
       pavucontrol

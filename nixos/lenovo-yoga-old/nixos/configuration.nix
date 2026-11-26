@@ -94,6 +94,8 @@
       bat
       bitwarden-desktop
       curl
+    openfortivpn 
+	ppp
       # evince
       eza
       fd
@@ -104,6 +106,7 @@
       htop
       inetutils
       jq
+	  moonlight-qt
       lazygit
       libreoffice-qt6-still
       mullvad
@@ -166,6 +169,7 @@
 
   environment.systemPackages = with pkgs; [
     alacritty
+	freerdp
     acpid
     # alsa-utils
     emacs
@@ -200,5 +204,7 @@
   networking.networkmanager.enable = true;
   boot.supportedFilesystems = [ "ntfs" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+   services.resolved.enable = true;
+  networking.useHostResolvConf = false;
 
 }

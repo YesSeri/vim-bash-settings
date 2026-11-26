@@ -110,7 +110,6 @@ if ! shopt -oq posix; then
 fi
 
 eval "$(zoxide init bash)"
-# eval "$(fzf --bash)"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 export EDITOR=nvim

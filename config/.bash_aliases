@@ -127,7 +127,7 @@ function shush() {
 alias syncwatch='watch -d grep -e Dirty: -e Writeback: /proc/meminfo'
 alias lg="lazygit"
 
-l() {
+function l() {
   if command -v eza >/dev/null 2>&1; then
     eza -lah --group-directories-first --git "$@"
   else
